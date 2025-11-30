@@ -1,4 +1,4 @@
-package br.com.movieflix.movieflix.entity.mapper;
+package br.com.movieflix.movieflix.entity.mapper.category;
 
 import br.com.movieflix.movieflix.entity.Category;
 import br.com.movieflix.movieflix.entity.dto.category.reponse.CategoryResponse;
