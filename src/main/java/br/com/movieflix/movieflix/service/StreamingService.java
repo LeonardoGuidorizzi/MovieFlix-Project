@@ -1,6 +1,9 @@
 package br.com.movieflix.movieflix.service;
 
 import br.com.movieflix.movieflix.entity.Streaming;
+import br.com.movieflix.movieflix.entity.dto.streaming.StreamingResponse;
+import br.com.movieflix.movieflix.entity.dto.streaming.StreamingRequest;
+import br.com.movieflix.movieflix.entity.mapper.StreamingMapper;
 import br.com.movieflix.movieflix.repository.StreamingRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -13,14 +16,21 @@ import java.util.Optional;
 public class StreamingService {
     private final StreamingRepository repository;
 
-    public List<Streaming> findAll(){
-        return repository.findAll();
+    public List<StreamingResponse> findAll(){
+               List<Streaming> streamings = repository.findAll();
+               return streamings.stream().map(StreamingMapper::toDto).toList();
     }
-    public Streaming getById(Long id){
-        Optional<Streaming> streaming = repository.findById(id);
-        if(streaming.isPresent()){
-            return streaming.get();
-        }
-        return null;
+    public Optional<StreamingResponse> getById(Long id){
+        return repository.findById(id).map(StreamingMapper::toDto);
     }
+
+    public StreamingResponse create(StreamingRequest request){
+        return StreamingMapper.toDto(repository.save(StreamingMapper.toEntity(request)));
+    }
+
+    public void deleteByid (Long id){
+        repository.deleteById(id);
+    }
+
+
 }
