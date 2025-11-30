@@ -1,4 +1,7 @@
 package br.com.movieflix.movieflix.repository;
 
-public interface StreamingRepository {
+import br.com.movieflix.movieflix.entity.Streaming;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface StreamingRepository extends JpaRepository<Streaming, Long> {
 }
