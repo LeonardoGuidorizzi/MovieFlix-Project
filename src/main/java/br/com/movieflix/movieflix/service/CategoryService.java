@@ -9,6 +9,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -21,12 +22,10 @@ public class CategoryService {
     }
 
     public CategoryResponse saveCatogory(CategoryRequest category){
-
         return CategoryMapper.toDto(repository.save(CategoryMapper.toEntity(category)));
     }
-    public CategoryResponse findById(Long id){
-        Category foundCategory = repository.findById(id).orElseThrow(()-> new RuntimeException("Category not found"));
-        return CategoryMapper.toDto(foundCategory);
+    public Optional<CategoryResponse> findById(Long id){
+        return repository.findById(id).map(CategoryMapper::toDto);
     }
 
     public void deleteById(Long id){

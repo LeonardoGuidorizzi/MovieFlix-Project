@@ -22,15 +22,22 @@ public class CategoryController {
         return ResponseEntity.ok(categoryService.findAll().stream().toList()) ;
     }
     @PostMapping
-    public CategoryResponse createCategory(@RequestBody CategoryRequest request){
-        return categoryService.saveCatogory(request);
+    public ResponseEntity<CategoryResponse> createCategory(@RequestBody CategoryRequest request){
+        return ResponseEntity.status(HttpStatus.CREATED).body(categoryService.saveCatogory(request));
     }
     @GetMapping("/{id}")
-    public CategoryResponse getByCategoryId(@PathVariable Long id){
-        return categoryService.findById(id);
+    public ResponseEntity<CategoryResponse> getByCategoryId(@PathVariable Long id){
+        return categoryService.findById(id).map(ResponseEntity::ok).orElse(ResponseEntity.notFound().build());
     }
+    /*
+    * Por que precisa do build()?
+    Porque métodos como: notFound() badRequest()noContent()
+    não retornam o ResponseEntity completo ainda.
+    Eles retornam um builder (um “montador” de resposta).
+    * */
     @DeleteMapping("/{id}")
-    public void deleteByCategoryId(@PathVariable Long id){
+    public ResponseEntity<Void> deleteByCategoryId(@PathVariable Long id){
         categoryService.deleteById(id);
+        return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }
 }
