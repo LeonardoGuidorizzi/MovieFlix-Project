@@ -5,6 +5,8 @@ import br.com.movieflix.movieflix.entity.dto.category.reponse.CategoryResponse;
 import br.com.movieflix.movieflix.entity.dto.category.request.CategoryRequest;
 import br.com.movieflix.movieflix.service.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -15,12 +17,13 @@ public class CategoryController {
     @Autowired
     private CategoryService categoryService;
     @GetMapping()
-    public List<CategoryResponse> getAllCategories(){
-        return categoryService.findAll();
+    public ResponseEntity<List<CategoryResponse>> getAllCategories(){
+
+        return ResponseEntity.ok(categoryService.findAll().stream().toList()) ;
     }
     @PostMapping
     public CategoryResponse createCategory(@RequestBody CategoryRequest request){
-        return categoryService.saveCatogory(category);
+        return categoryService.saveCatogory(request);
     }
     @GetMapping("/{id}")
     public CategoryResponse getByCategoryId(@PathVariable Long id){

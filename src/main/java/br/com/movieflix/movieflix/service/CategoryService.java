@@ -1,6 +1,9 @@
 package br.com.movieflix.movieflix.service;
 
 import br.com.movieflix.movieflix.entity.Category;
+import br.com.movieflix.movieflix.entity.dto.category.reponse.CategoryResponse;
+import br.com.movieflix.movieflix.entity.dto.category.request.CategoryRequest;
+import br.com.movieflix.movieflix.entity.mapper.CategoryMapper;
 import br.com.movieflix.movieflix.repository.CategoryRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -11,15 +14,19 @@ import java.util.List;
 @RequiredArgsConstructor
 public class CategoryService {
     private final CategoryRepository repository;
-    public List<Category> findAll(){
-       return repository.findAll();
+    public List<CategoryResponse> findAll(){
+
+        List<Category> categories =  repository.findAll();
+        return categories.stream().map(CategoryMapper::toDto).toList();
     }
 
-    public Category saveCatogory(Category category){
-        return repository.save(category);
+    public CategoryResponse saveCatogory(CategoryRequest category){
+
+        return CategoryMapper.toDto(repository.save(CategoryMapper.toEntity(category)));
     }
-    public Category findById(Long id){
-        return repository.findById(id).orElseThrow(()-> new RuntimeException("Category not found"));
+    public CategoryResponse findById(Long id){
+        Category foundCategory = repository.findById(id).orElseThrow(()-> new RuntimeException("Category not found"));
+        return CategoryMapper.toDto(foundCategory);
     }
 
     public void deleteById(Long id){
