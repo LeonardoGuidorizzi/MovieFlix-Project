@@ -1,8 +1,7 @@
 package br.com.movieflix.movieflix.controller;
 
-import br.com.movieflix.movieflix.entity.Category;
-import br.com.movieflix.movieflix.entity.dto.category.reponse.CategoryResponse;
-import br.com.movieflix.movieflix.entity.dto.category.request.CategoryRequest;
+import br.com.movieflix.movieflix.entity.dto.category.CategoryResponse;
+import br.com.movieflix.movieflix.entity.dto.category.CategoryRequest;
 import br.com.movieflix.movieflix.service.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

@@ -1,16 +1,16 @@
 package br.com.movieflix.movieflix.entity.mapper;
 
 import br.com.movieflix.movieflix.entity.Category;
-import br.com.movieflix.movieflix.entity.dto.category.reponse.CategoryResponse;
-import br.com.movieflix.movieflix.entity.dto.category.request.CategoryRequest;
+import br.com.movieflix.movieflix.entity.dto.category.CategoryResponse;
+import br.com.movieflix.movieflix.entity.dto.category.CategoryRequest;
 import lombok.experimental.UtilityClass;
 
 @UtilityClass
 public class CategoryMapper {
-    public static Category toEntity(CategoryRequest categoryRequest){
+    public static Category toEntity(CategoryRequest request){
         return Category
                 .builder()
-                .name(categoryRequest.name())
+                .name(request.name())
                 .build();
     }
     public static CategoryResponse toDto(Category entity){

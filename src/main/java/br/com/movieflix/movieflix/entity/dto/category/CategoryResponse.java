@@ -1,4 +1,4 @@
-package br.com.movieflix.movieflix.entity.dto.category.reponse;
+package br.com.movieflix.movieflix.entity.dto.category;
 
 import lombok.Builder;
 

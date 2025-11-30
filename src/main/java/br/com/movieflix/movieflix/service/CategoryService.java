@@ -1,8 +1,8 @@
 package br.com.movieflix.movieflix.service;
 
 import br.com.movieflix.movieflix.entity.Category;
-import br.com.movieflix.movieflix.entity.dto.category.reponse.CategoryResponse;
-import br.com.movieflix.movieflix.entity.dto.category.request.CategoryRequest;
+import br.com.movieflix.movieflix.entity.dto.category.CategoryResponse;
+import br.com.movieflix.movieflix.entity.dto.category.CategoryRequest;
 import br.com.movieflix.movieflix.entity.mapper.CategoryMapper;
 import br.com.movieflix.movieflix.repository.CategoryRepository;
 import lombok.RequiredArgsConstructor;
