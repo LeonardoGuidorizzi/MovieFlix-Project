@@ -22,7 +22,7 @@ public class CategoryController {
     }
     @PostMapping
     public ResponseEntity<CategoryResponse> createCategory(@RequestBody CategoryRequest request){
-        return ResponseEntity.status(HttpStatus.CREATED).body(categoryService.saveCatogory(request));
+        return ResponseEntity.status(HttpStatus.CREATED).body(categoryService.create(request));
     }
     @GetMapping("/{id}")
     public ResponseEntity<CategoryResponse> getByCategoryId(@PathVariable Long id){
