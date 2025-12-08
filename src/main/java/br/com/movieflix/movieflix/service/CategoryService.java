@@ -16,16 +16,20 @@ import java.util.Optional;
 public class CategoryService {
     private final CategoryRepository repository;
     public List<CategoryResponse> findAll(){
-
         List<Category> categories =  repository.findAll();
         return categories.stream().map(CategoryMapper::toDto).toList();
     }
 
-    public CategoryResponse saveCatogory(CategoryRequest category){
-        return CategoryMapper.toDto(repository.save(CategoryMapper.toEntity(category)));
-    }
     public Optional<CategoryResponse> findById(Long id){
         return repository.findById(id).map(CategoryMapper::toDto);
+    }
+
+    public List<Category> findAllById(List<Long> categoryIds){
+        return repository.findAllById(categoryIds);
+    }
+
+    public CategoryResponse create(CategoryRequest category){
+        return CategoryMapper.toDto(repository.save(CategoryMapper.toEntity(category)));
     }
 
     public void deleteById(Long id){
