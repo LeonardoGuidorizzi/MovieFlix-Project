@@ -1,4 +1,7 @@
 package br.com.movieflix.movieflix.entity.dto.User;
 
-public record UserRequest() {
+import lombok.Builder;
+
+@Builder
+public record UserRequest(String name, String email, String password) {
 }
