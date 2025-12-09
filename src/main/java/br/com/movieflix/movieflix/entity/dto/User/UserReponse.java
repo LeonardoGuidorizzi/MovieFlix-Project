@@ -1,4 +1,7 @@
 package br.com.movieflix.movieflix.entity.dto.User;
 
-public record UserReponse() {
+import lombok.Builder;
+
+@Builder
+public record UserReponse(Long id, String name, String email) {
 }
