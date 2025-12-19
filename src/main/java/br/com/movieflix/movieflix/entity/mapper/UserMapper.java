@@ -1,13 +1,13 @@
 package br.com.movieflix.movieflix.entity.mapper;
 
 import br.com.movieflix.movieflix.entity.User;
-import br.com.movieflix.movieflix.entity.dto.User.UserReponse;
-import br.com.movieflix.movieflix.entity.dto.User.UserRequest;
+import br.com.movieflix.movieflix.entity.dto.User.RegisterReponse;
+import br.com.movieflix.movieflix.entity.dto.User.RegisterRequest;
 import lombok.experimental.UtilityClass;
 
 @UtilityClass
 public class UserMapper {
-    public static User toEntity (UserRequest request){
+    public static User toEntity (RegisterRequest request){
         return User
                 .builder()
                 .name(request.name())
@@ -15,8 +15,8 @@ public class UserMapper {
                 .password(request.password())
                 .build();
     }
-    public static UserReponse toDto (User entity){
-        return UserReponse
+    public static RegisterReponse toDto (User entity){
+        return RegisterReponse
                 .builder()
                 .id(entity.getId())
                 .name(entity.getName())
