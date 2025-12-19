@@ -27,7 +27,8 @@ public class SecurityConfig {
                     .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                     .authorizeHttpRequests(authorize-> authorize
                             .requestMatchers(HttpMethod.POST, "/movieflix/auth/register", "/movieflix/auth/login").permitAll()
-                            .anyRequest().authenticated()
+                            .anyRequest()
+                            .authenticated()
                     )
                     .addFilterBefore(securityFilter, UsernamePasswordAuthenticationFilter.class)
                     .build();
