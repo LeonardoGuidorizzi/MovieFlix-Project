@@ -1,4 +1,4 @@
 package br.com.movieflix.movieflix.entity.dto.User;
 
-public record LoginRequest() {
+public record LoginRequest(String email, String password) {
 }
