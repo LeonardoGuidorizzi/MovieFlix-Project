@@ -1,6 +1,7 @@
 package br.com.movieflix.movieflix.config;
 
-import br.com.movieflix.movieflix.entity.dto.User.JWTUserData;
+import br.com.movieflix.movieflix.security.jwt.JWTUserData;
+import br.com.movieflix.movieflix.security.jwt.TokenService;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;

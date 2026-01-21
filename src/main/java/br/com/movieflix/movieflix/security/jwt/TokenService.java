@@ -1,7 +1,7 @@
 package br.com.movieflix.movieflix.config;
 
 import br.com.movieflix.movieflix.entity.User;
-import br.com.movieflix.movieflix.entity.dto.User.JWTUserData;
+import br.com.movieflix.movieflix.security.jwt.JWTUserData;
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.exceptions.JWTVerificationException;
