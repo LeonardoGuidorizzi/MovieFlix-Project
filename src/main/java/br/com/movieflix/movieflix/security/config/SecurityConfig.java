@@ -1,5 +1,6 @@
-package br.com.movieflix.movieflix.config;
+package br.com.movieflix.movieflix.security.config;
 
+import br.com.movieflix.movieflix.security.filter.SecurityFilter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
