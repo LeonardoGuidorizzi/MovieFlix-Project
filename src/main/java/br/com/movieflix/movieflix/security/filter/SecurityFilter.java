@@ -1,6 +1,7 @@
-package br.com.movieflix.movieflix.config;
+package br.com.movieflix.movieflix.security.filter;
 
-import br.com.movieflix.movieflix.entity.dto.User.JWTUserData;
+import br.com.movieflix.movieflix.security.jwt.JWTUserData;
+import br.com.movieflix.movieflix.security.jwt.TokenService;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -22,25 +23,29 @@ public class SecurityFilter extends OncePerRequestFilter {
     private final TokenService tokenService;
 
     @Override
-    protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
+    protected void doFilterInternal(
+            HttpServletRequest request,
+            HttpServletResponse response,
+            FilterChain filterChain
+    ) throws ServletException, IOException {
         String authorizationHeader = request.getHeader("Authorization");
 
         if (Strings.isNotEmpty(authorizationHeader) && authorizationHeader.startsWith("Bearer ")) {
             String token = authorizationHeader.substring("Bearer ".length());
 
-            Optional<JWTUserData> optionalJWTUserData = tokenService.validateToken(token);
+            Optional<JWTUserData> JWTUserData = tokenService.validateToken(token);
 
-            if (optionalJWTUserData.isPresent()){
-                JWTUserData jwtUserData = optionalJWTUserData.get();
-                UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(
-                        jwtUserData,
-                        null,
-                        Collections.emptyList());
-                SecurityContextHolder.getContext().setAuthentication(authenticationToken);
-            }
-            filterChain.doFilter(request, response);
-        } else {
-            filterChain.doFilter(request, response);
+            JWTUserData.ifPresent(user ->
+                    SecurityContextHolder.getContext().setAuthentication(
+                            new UsernamePasswordAuthenticationToken(
+                                    user,
+                                    null,
+                                    Collections.emptyList()
+                            )
+                    )
+            );
         }
+            filterChain.doFilter(request, response);
+
     }
 }

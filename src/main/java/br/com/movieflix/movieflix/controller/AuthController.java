@@ -1,17 +1,16 @@
 package br.com.movieflix.movieflix.controller;
 
-import br.com.movieflix.movieflix.config.TokenService;
 import br.com.movieflix.movieflix.entity.User;
-import br.com.movieflix.movieflix.entity.dto.User.LoginRequest;
-import br.com.movieflix.movieflix.entity.dto.User.LoginResponse;
-import br.com.movieflix.movieflix.entity.dto.User.RegisterReponse;
-import br.com.movieflix.movieflix.entity.dto.User.RegisterRequest;
+import br.com.movieflix.movieflix.entity.dto.Auth.LoginRequest;
+import br.com.movieflix.movieflix.entity.dto.Auth.LoginResponse;
+import br.com.movieflix.movieflix.entity.dto.Auth.RegisterReponse;
+import br.com.movieflix.movieflix.entity.dto.Auth.RegisterRequest;
+import br.com.movieflix.movieflix.security.auth.AuthService;
 import br.com.movieflix.movieflix.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
-import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -25,8 +24,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class AuthController {
 
     private final UserService userService;
-    private final AuthenticationManager authenticationManager;
-    private final TokenService tokenService;
+    private final AuthService authService;
 
     @PostMapping("/register")
     public ResponseEntity<RegisterReponse> register(@RequestBody RegisterRequest request){
@@ -35,12 +33,7 @@ public class AuthController {
 
     @PostMapping("/login")
     public ResponseEntity<LoginResponse> login(@RequestBody LoginRequest request){
-        UsernamePasswordAuthenticationToken userAndPass = new UsernamePasswordAuthenticationToken(request.email(), request.password());
-        Authentication authentication = authenticationManager.authenticate(userAndPass);
-
-        User user = (User) authentication.getPrincipal();
-        String token = tokenService.generateToken(user);
-        return ResponseEntity.ok(new LoginResponse(token));
+        return ResponseEntity.ok(authService.login(request));
     }
 
 

@@ -17,6 +17,7 @@ spring:
   flyway:
     enabled: true
 
-    movieflix:
-      security:
-        secret: "random string"
+
+movieflix:
+  security:
+    secret: "random string"

@@ -1,4 +1,4 @@
-package br.com.movieflix.movieflix.entity.dto.User;
+package br.com.movieflix.movieflix.security.jwt;
 
 import lombok.Builder;
 
