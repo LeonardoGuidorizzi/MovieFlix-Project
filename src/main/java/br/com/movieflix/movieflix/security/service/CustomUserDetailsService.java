@@ -1,6 +1,7 @@
-package br.com.movieflix.movieflix.service;
+package br.com.movieflix.movieflix.security.service;
 
 import br.com.movieflix.movieflix.repository.UserRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -8,7 +9,8 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 @Service
-public class AuthService implements UserDetailsService {
+@RequiredArgsConstructor
+public class CustomUserDetailsService implements UserDetailsService {
     @Autowired
     UserRepository repository;
     @Override

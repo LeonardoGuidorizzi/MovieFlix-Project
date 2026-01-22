@@ -1,8 +1,8 @@
 package br.com.movieflix.movieflix.service;
 
 import br.com.movieflix.movieflix.entity.User;
-import br.com.movieflix.movieflix.entity.dto.User.RegisterReponse;
-import br.com.movieflix.movieflix.entity.dto.User.RegisterRequest;
+import br.com.movieflix.movieflix.entity.dto.Auth.RegisterReponse;
+import br.com.movieflix.movieflix.entity.dto.Auth.RegisterRequest;
 import br.com.movieflix.movieflix.entity.mapper.UserMapper;
 import br.com.movieflix.movieflix.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
