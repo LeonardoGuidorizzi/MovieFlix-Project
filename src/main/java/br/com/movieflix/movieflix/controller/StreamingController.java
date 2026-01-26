@@ -17,24 +17,24 @@ public class StreamingController {
     private StreamingService service;
 
     @PostMapping
-    public ResponseEntity<StreamingResponse> createStreaming(@RequestBody StreamingRequest request){
+    public ResponseEntity<StreamingResponse> create(@RequestBody StreamingRequest request){
         return ResponseEntity.status(HttpStatus.CREATED).body(service.create(request));
     }
 
     @GetMapping()
-    public ResponseEntity<List<StreamingResponse>>getAllStreamings(){
+    public ResponseEntity<List<StreamingResponse>>getAll(){
         return ResponseEntity.ok(service.findAll().stream().toList());
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<StreamingResponse>getByStreamingId(@PathVariable Long id){
-        return service.findById(id).map(ResponseEntity::ok).orElse(ResponseEntity.notFound().build());
+    public ResponseEntity<StreamingResponse> getById(@PathVariable Long id){
+        return ResponseEntity.ok(service.findById(id));
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteByStreamingId(@PathVariable Long id){
-         service.deleteByid(id);
-         return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
+    public ResponseEntity<Void> deleteById(@PathVariable Long id){
+        service.deleteByid(id);
+        return ResponseEntity.noContent().build();
     }
 
 
