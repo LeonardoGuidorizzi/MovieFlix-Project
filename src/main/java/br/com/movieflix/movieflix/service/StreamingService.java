@@ -4,6 +4,7 @@ import br.com.movieflix.movieflix.domain.Streaming;
 import br.com.movieflix.movieflix.domain.dto.streaming.StreamingResponse;
 import br.com.movieflix.movieflix.domain.dto.streaming.StreamingRequest;
 import br.com.movieflix.movieflix.domain.mapper.StreamingMapper;
+import br.com.movieflix.movieflix.exception.business.BusinessException;
 import br.com.movieflix.movieflix.exception.notFound.ResourceNotFoundException;
 import br.com.movieflix.movieflix.repository.StreamingRepository;
 import lombok.RequiredArgsConstructor;
@@ -17,6 +18,13 @@ import java.util.Optional;
 public class StreamingService {
     private final StreamingRepository repository;
 
+    public StreamingResponse create(StreamingRequest request){
+        if (repository.existsByNameIgnoreCase(request.name())) {
+            throw new BusinessException("Movie already exists");
+        }
+        return StreamingMapper.toDto(repository.save(StreamingMapper.toEntity(request)));
+    }
+
     public List<StreamingResponse> findAll(){
                List<Streaming> streamings = repository.findAll();
                return streamings.stream().map(StreamingMapper::toDto).toList();
@@ -27,10 +35,6 @@ public class StreamingService {
 
     public List<Streaming> findAllById(List<Long> streamingIds){
         return repository.findAllById(streamingIds);
-    }
-
-    public StreamingResponse create(StreamingRequest request){
-        return StreamingMapper.toDto(repository.save(StreamingMapper.toEntity(request)));
     }
 
     public void deleteByid (Long id){

@@ -4,6 +4,7 @@ import br.com.movieflix.movieflix.domain.Category;
 import br.com.movieflix.movieflix.domain.dto.category.CategoryResponse;
 import br.com.movieflix.movieflix.domain.dto.category.CategoryRequest;
 import br.com.movieflix.movieflix.domain.mapper.CategoryMapper;
+import br.com.movieflix.movieflix.exception.business.BusinessException;
 import br.com.movieflix.movieflix.exception.notFound.ResourceNotFoundException;
 import br.com.movieflix.movieflix.repository.CategoryRepository;
 import lombok.RequiredArgsConstructor;
@@ -15,6 +16,14 @@ import java.util.List;
 @RequiredArgsConstructor
 public class CategoryService {
     private final CategoryRepository repository;
+
+    public CategoryResponse create(CategoryRequest request){
+        if (repository.existsByNameIgnoreCase(request.name())) {
+            throw new BusinessException("Category already exists");
+        }
+        return CategoryMapper.toDto(repository.save(CategoryMapper.toEntity(request)));
+    }
+
     public List<CategoryResponse> findAll(){
         List<Category> categories =  repository.findAll();
         return categories.stream().map(CategoryMapper::toDto).toList();
@@ -26,10 +35,6 @@ public class CategoryService {
 
     public List<Category> findAllById(List<Long> categoryIds){
         return repository.findAllById(categoryIds);
-    }
-
-    public CategoryResponse create(CategoryRequest category){
-        return CategoryMapper.toDto(repository.save(CategoryMapper.toEntity(category)));
     }
 
     public void deleteById(Long id){
