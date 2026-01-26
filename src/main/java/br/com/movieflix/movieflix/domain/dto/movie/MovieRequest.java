@@ -1,4 +1,4 @@
-package br.com.movieflix.movieflix.entity.dto.movie;
+package br.com.movieflix.movieflix.domain.dto.movie;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 import java.time.LocalDate;

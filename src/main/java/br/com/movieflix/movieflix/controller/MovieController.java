@@ -1,8 +1,8 @@
 package br.com.movieflix.movieflix.controller;
 
-import br.com.movieflix.movieflix.entity.dto.movie.MovieRequest;
-import br.com.movieflix.movieflix.entity.dto.movie.MovieResponse;
-import br.com.movieflix.movieflix.entity.dto.movie.MovieUpdateRequest;
+import br.com.movieflix.movieflix.domain.dto.movie.MovieRequest;
+import br.com.movieflix.movieflix.domain.dto.movie.MovieResponse;
+import br.com.movieflix.movieflix.domain.dto.movie.MovieUpdateRequest;
 import br.com.movieflix.movieflix.service.MovieService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -23,7 +23,7 @@ public class MovieController {
     }
     @GetMapping("/{id}")
     public ResponseEntity<MovieResponse> getMovieByid(@PathVariable Long id){
-        return service.findByid(id).map(ResponseEntity::ok).orElse(ResponseEntity.notFound().build());
+        return service.findById(id).map(ResponseEntity::ok).orElse(ResponseEntity.notFound().build());
                 //requisição
                 //achou?
                 //resposta: ok

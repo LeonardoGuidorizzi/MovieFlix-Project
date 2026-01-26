@@ -1,8 +1,8 @@
-package br.com.movieflix.movieflix.entity.mapper;
+package br.com.movieflix.movieflix.domain.mapper;
 
-import br.com.movieflix.movieflix.entity.Category;
-import br.com.movieflix.movieflix.entity.dto.category.CategoryResponse;
-import br.com.movieflix.movieflix.entity.dto.category.CategoryRequest;
+import br.com.movieflix.movieflix.domain.Category;
+import br.com.movieflix.movieflix.domain.dto.category.CategoryResponse;
+import br.com.movieflix.movieflix.domain.dto.category.CategoryRequest;
 import lombok.experimental.UtilityClass;
 
 @UtilityClass

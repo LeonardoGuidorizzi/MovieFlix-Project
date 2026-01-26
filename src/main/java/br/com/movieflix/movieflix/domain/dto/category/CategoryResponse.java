@@ -1,8 +1,6 @@
-package br.com.movieflix.movieflix.entity.dto.category;
+package br.com.movieflix.movieflix.domain.dto.category;
 
 import lombok.Builder;
-
-import java.util.List;
 
 @Builder
 public record CategoryResponse(Long id, String name) {

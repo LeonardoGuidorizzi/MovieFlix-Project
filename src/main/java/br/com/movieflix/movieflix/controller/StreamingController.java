@@ -1,7 +1,7 @@
 package br.com.movieflix.movieflix.controller;
 
-import br.com.movieflix.movieflix.entity.dto.streaming.StreamingRequest;
-import br.com.movieflix.movieflix.entity.dto.streaming.StreamingResponse;
+import br.com.movieflix.movieflix.domain.dto.streaming.StreamingRequest;
+import br.com.movieflix.movieflix.domain.dto.streaming.StreamingResponse;
 import br.com.movieflix.movieflix.service.StreamingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

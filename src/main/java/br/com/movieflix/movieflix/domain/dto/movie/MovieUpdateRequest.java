@@ -1,4 +1,4 @@
-package br.com.movieflix.movieflix.entity.dto.movie;
+package br.com.movieflix.movieflix.domain.dto.movie;
 
 import java.time.LocalDate;
 import java.util.List;

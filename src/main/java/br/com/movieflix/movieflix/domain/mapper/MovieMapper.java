@@ -1,12 +1,12 @@
-package br.com.movieflix.movieflix.entity.mapper;
+package br.com.movieflix.movieflix.domain.mapper;
 
-import br.com.movieflix.movieflix.entity.Category;
-import br.com.movieflix.movieflix.entity.Movie;
-import br.com.movieflix.movieflix.entity.Streaming;
-import br.com.movieflix.movieflix.entity.dto.category.CategoryResponse;
-import br.com.movieflix.movieflix.entity.dto.movie.MovieResponse;
-import br.com.movieflix.movieflix.entity.dto.movie.MovieRequest;
-import br.com.movieflix.movieflix.entity.dto.streaming.StreamingResponse;
+import br.com.movieflix.movieflix.domain.Category;
+import br.com.movieflix.movieflix.domain.Movie;
+import br.com.movieflix.movieflix.domain.Streaming;
+import br.com.movieflix.movieflix.domain.dto.category.CategoryResponse;
+import br.com.movieflix.movieflix.domain.dto.movie.MovieResponse;
+import br.com.movieflix.movieflix.domain.dto.movie.MovieRequest;
+import br.com.movieflix.movieflix.domain.dto.streaming.StreamingResponse;
 import lombok.experimental.UtilityClass;
 
 import java.util.List;

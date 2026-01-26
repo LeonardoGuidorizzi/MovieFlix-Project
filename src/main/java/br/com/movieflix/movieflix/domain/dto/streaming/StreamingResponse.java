@@ -1,4 +1,4 @@
-package br.com.movieflix.movieflix.entity.dto.streaming;
+package br.com.movieflix.movieflix.domain.dto.streaming;
 
 import lombok.Builder;
 

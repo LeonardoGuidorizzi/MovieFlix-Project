@@ -1,7 +1,7 @@
 package br.com.movieflix.movieflix.controller;
 
-import br.com.movieflix.movieflix.entity.dto.category.CategoryResponse;
-import br.com.movieflix.movieflix.entity.dto.category.CategoryRequest;
+import br.com.movieflix.movieflix.domain.dto.category.CategoryResponse;
+import br.com.movieflix.movieflix.domain.dto.category.CategoryRequest;
 import br.com.movieflix.movieflix.service.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -26,7 +26,8 @@ public class CategoryController {
     }
     @GetMapping("/{id}")
     public ResponseEntity<CategoryResponse> getByCategoryId(@PathVariable Long id){
-        return categoryService.findById(id).map(ResponseEntity::ok).orElse(ResponseEntity.notFound().build());
+        categoryService.findById(id);
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
     }
     /*
     * Por que precisa do build()?

@@ -1,8 +1,8 @@
-package br.com.movieflix.movieflix.entity.mapper;
+package br.com.movieflix.movieflix.domain.mapper;
 
-import br.com.movieflix.movieflix.entity.Streaming;
-import br.com.movieflix.movieflix.entity.dto.streaming.StreamingResponse;
-import br.com.movieflix.movieflix.entity.dto.streaming.StreamingRequest;
+import br.com.movieflix.movieflix.domain.Streaming;
+import br.com.movieflix.movieflix.domain.dto.streaming.StreamingResponse;
+import br.com.movieflix.movieflix.domain.dto.streaming.StreamingRequest;
 import lombok.experimental.UtilityClass;
 
 @UtilityClass

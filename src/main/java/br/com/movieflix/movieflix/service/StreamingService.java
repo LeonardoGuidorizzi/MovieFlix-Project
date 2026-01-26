@@ -1,10 +1,10 @@
 package br.com.movieflix.movieflix.service;
 
-import br.com.movieflix.movieflix.entity.Category;
-import br.com.movieflix.movieflix.entity.Streaming;
-import br.com.movieflix.movieflix.entity.dto.streaming.StreamingResponse;
-import br.com.movieflix.movieflix.entity.dto.streaming.StreamingRequest;
-import br.com.movieflix.movieflix.entity.mapper.StreamingMapper;
+import br.com.movieflix.movieflix.domain.Streaming;
+import br.com.movieflix.movieflix.domain.dto.streaming.StreamingResponse;
+import br.com.movieflix.movieflix.domain.dto.streaming.StreamingRequest;
+import br.com.movieflix.movieflix.domain.mapper.StreamingMapper;
+import br.com.movieflix.movieflix.exception.notFound.ResourceNotFoundException;
 import br.com.movieflix.movieflix.repository.StreamingRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -21,8 +21,8 @@ public class StreamingService {
                List<Streaming> streamings = repository.findAll();
                return streamings.stream().map(StreamingMapper::toDto).toList();
     }
-    public Optional<StreamingResponse> findById(Long id){
-        return repository.findById(id).map(StreamingMapper::toDto);
+    public StreamingResponse findById(Long id){
+        return repository.findById(id).map(StreamingMapper::toDto).orElseThrow(()-> new ResourceNotFoundException("Streaming", id));
     }
 
     public List<Streaming> findAllById(List<Long> streamingIds){
@@ -34,6 +34,9 @@ public class StreamingService {
     }
 
     public void deleteByid (Long id){
+        if(!repository.existsById(id)){
+            throw new ResourceNotFoundException("Streaming", id);
+        }
         repository.deleteById(id);
     }
 

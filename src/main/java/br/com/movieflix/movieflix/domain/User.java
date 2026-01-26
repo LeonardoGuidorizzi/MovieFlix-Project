@@ -1,4 +1,4 @@
-package br.com.movieflix.movieflix.entity;
+package br.com.movieflix.movieflix.domain;
 
 import jakarta.persistence.*;
 import lombok.*;
