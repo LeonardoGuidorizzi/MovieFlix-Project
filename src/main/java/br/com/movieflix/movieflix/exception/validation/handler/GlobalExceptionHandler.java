@@ -42,31 +42,6 @@ public class GlobalExceptionHandler {
         return ResponseEntity.badRequest().body(error);
     }
 
-    @ExceptionHandler(BadCredentialsException.class)
-    public ResponseEntity<ErrorResponse> handleBadCredentials(BadCredentialsException ex, HttpServletRequest request) {
-        ErrorResponse error =
-                ErrorResponse.of(
-                        HttpStatus.UNAUTHORIZED.value(),
-                        HttpStatus.UNAUTHORIZED.name(),
-                        "Email or password incorrect",
-                        request.getRequestURI()
-                );
-        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(error);
-
-    }
-
-    @ExceptionHandler(AccessDeniedException.class)
-    public ResponseEntity<ErrorResponse> handleAccessDenied(AccessDeniedException ex, HttpServletRequest request) {
-        return ResponseEntity.status(HttpStatus.FORBIDDEN).body(
-                ErrorResponse.of(
-                        HttpStatus.FORBIDDEN.value(),
-                        HttpStatus.FORBIDDEN.name(),
-                        "You do not have permission to access this resource",
-                        request.getRequestURI())
-        );
-    }
-
-
     @ExceptionHandler(Exception.class)
     public ResponseEntity<ErrorResponse> handleGenericException(
             Exception ex,
