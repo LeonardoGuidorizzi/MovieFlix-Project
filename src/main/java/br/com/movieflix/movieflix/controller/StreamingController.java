@@ -2,7 +2,7 @@ package br.com.movieflix.movieflix.controller;
 
 import br.com.movieflix.movieflix.domain.dto.streaming.StreamingRequest;
 import br.com.movieflix.movieflix.domain.dto.streaming.StreamingResponse;
-import br.com.movieflix.movieflix.domain.dto.streaming.StreamingUpdate;
+import br.com.movieflix.movieflix.domain.dto.streaming.StreamingUpdateRequest;
 import br.com.movieflix.movieflix.service.StreamingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -33,7 +33,7 @@ public class StreamingController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<StreamingResponse> update(@PathVariable Long id, @RequestBody StreamingUpdate request){
+    public ResponseEntity<StreamingResponse> update(@PathVariable Long id, @RequestBody StreamingUpdateRequest request){
         return ResponseEntity.ok(service.update(id, request));
     }
 

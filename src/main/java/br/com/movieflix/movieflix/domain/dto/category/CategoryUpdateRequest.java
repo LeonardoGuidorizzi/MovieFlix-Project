@@ -1,4 +1,4 @@
 package br.com.movieflix.movieflix.domain.dto.category;
 
-public record CategoryUpdate(String name) {
+public record CategoryUpdateRequest(String name) {
 }

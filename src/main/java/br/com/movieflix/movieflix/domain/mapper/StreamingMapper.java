@@ -1,11 +1,9 @@
 package br.com.movieflix.movieflix.domain.mapper;
 
-import br.com.movieflix.movieflix.domain.Category;
 import br.com.movieflix.movieflix.domain.Streaming;
-import br.com.movieflix.movieflix.domain.dto.category.CategoryUpdate;
 import br.com.movieflix.movieflix.domain.dto.streaming.StreamingResponse;
 import br.com.movieflix.movieflix.domain.dto.streaming.StreamingRequest;
-import br.com.movieflix.movieflix.domain.dto.streaming.StreamingUpdate;
+import br.com.movieflix.movieflix.domain.dto.streaming.StreamingUpdateRequest;
 import lombok.experimental.UtilityClass;
 
 @UtilityClass
@@ -26,7 +24,7 @@ public class StreamingMapper {
                 .build();
     }
 
-    public void update (StreamingUpdate dto, Streaming entity){
+    public void update (StreamingUpdateRequest dto, Streaming entity){
         if(dto.name() != null){
             entity.setName(dto.name());
         }
