@@ -1,12 +1,11 @@
-package br.com.movieflix.movieflix.exception;
+package br.com.movieflix.movieflix.exception.validation.handler;
 
 import br.com.movieflix.movieflix.exception.business.BusinessException;
 import br.com.movieflix.movieflix.exception.notFound.ResourceNotFoundException;
+import br.com.movieflix.movieflix.exception.validation.response.ErrorResponse;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.AccessDeniedException;
-import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
