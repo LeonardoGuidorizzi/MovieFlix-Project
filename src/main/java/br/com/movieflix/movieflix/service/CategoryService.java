@@ -3,6 +3,7 @@ package br.com.movieflix.movieflix.service;
 import br.com.movieflix.movieflix.domain.Category;
 import br.com.movieflix.movieflix.domain.dto.category.CategoryResponse;
 import br.com.movieflix.movieflix.domain.dto.category.CategoryRequest;
+import br.com.movieflix.movieflix.domain.dto.category.CategoryUpdateRequest;
 import br.com.movieflix.movieflix.domain.mapper.CategoryMapper;
 import br.com.movieflix.movieflix.exception.business.BusinessException;
 import br.com.movieflix.movieflix.exception.notFound.ResourceNotFoundException;
@@ -35,6 +36,13 @@ public class CategoryService {
 
     public List<Category> findAllById(List<Long> categoryIds){
         return repository.findAllById(categoryIds);
+    }
+
+    public CategoryResponse update(Long id, CategoryUpdateRequest request ){
+        Category foundCategory = repository.findById(id).orElseThrow(()-> new ResourceNotFoundException("Category", id));
+        CategoryMapper.update(request, foundCategory);
+        Category category = repository.save(foundCategory);
+        return CategoryMapper.toDto(category);
     }
 
     public void deleteById(Long id){

@@ -3,6 +3,7 @@ package br.com.movieflix.movieflix.service;
 import br.com.movieflix.movieflix.domain.Streaming;
 import br.com.movieflix.movieflix.domain.dto.streaming.StreamingResponse;
 import br.com.movieflix.movieflix.domain.dto.streaming.StreamingRequest;
+import br.com.movieflix.movieflix.domain.dto.streaming.StreamingUpdateRequest;
 import br.com.movieflix.movieflix.domain.mapper.StreamingMapper;
 import br.com.movieflix.movieflix.exception.business.BusinessException;
 import br.com.movieflix.movieflix.exception.notFound.ResourceNotFoundException;
@@ -11,7 +12,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -36,7 +36,12 @@ public class StreamingService {
     public List<Streaming> findAllById(List<Long> streamingIds){
         return repository.findAllById(streamingIds);
     }
-
+    public StreamingResponse update (Long id, StreamingUpdateRequest request){
+        Streaming foundStreaming = repository.findById(id).orElseThrow(()-> new ResourceNotFoundException("Streaming", id));
+        StreamingMapper.update(request, foundStreaming);
+        Streaming streaming = repository.save(foundStreaming);
+        return StreamingMapper.toDto(streaming);
+    }
     public void deleteByid (Long id){
         if(!repository.existsById(id)){
             throw new ResourceNotFoundException("Streaming", id);
