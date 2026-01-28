@@ -6,7 +6,9 @@ import br.com.movieflix.movieflix.domain.Streaming;
 import br.com.movieflix.movieflix.domain.dto.category.CategoryResponse;
 import br.com.movieflix.movieflix.domain.dto.movie.MovieResponse;
 import br.com.movieflix.movieflix.domain.dto.movie.MovieRequest;
+import br.com.movieflix.movieflix.domain.dto.movie.MovieUpdateRequest;
 import br.com.movieflix.movieflix.domain.dto.streaming.StreamingResponse;
+import br.com.movieflix.movieflix.domain.dto.streaming.StreamingUpdateRequest;
 import lombok.experimental.UtilityClass;
 
 import java.util.List;
@@ -50,6 +52,21 @@ public class MovieMapper {
                 .categories(categories)
                 .streamings(streamings)
                 .build();
+    }
+
+    public void update (
+            MovieUpdateRequest request,
+            Movie entity,
+            List<Category> categories,
+            List<Streaming> streamings
+    ){
+        if(request.name() != null )entity.setName(request.name());
+
+        if(request.description() != null )entity.setName(request.name());
+
+        if(request.releaseDate() != null )entity.setName(request.name());
+
+        if(request.rating() != null )entity.setName(request.name());
     }
 
 

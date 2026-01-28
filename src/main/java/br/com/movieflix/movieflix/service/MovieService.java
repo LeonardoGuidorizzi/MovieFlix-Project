@@ -65,26 +65,21 @@ public class MovieService {
 
     public MovieResponse update(Long id, MovieUpdateRequest request){
         Movie foundMovie = repository.findById(id).orElseThrow(()-> new ResourceNotFoundException("Movie", id));
-        if(request.name() != null )foundMovie.setName(request.name());
-        if(request.description() != null )foundMovie.setName(request.name());
-        if(request.releaseDate() != null )foundMovie.setName(request.name());
-        if(request.rating() != null )foundMovie.setName(request.name());
 
-        if(request.categories() != null){
-            List<Category> categories = categoryService.findAllById(request.categories());
-            foundMovie.setCategories(categories);
-        }
+        List<Category> categories = request.categories() == null
+                ? foundMovie.getCategories()
+                : categoryService.findAllById(request.categories());
+
+        List<Streaming> streamings = request.streamings() == null
+                ? foundMovie.getStreamings()
+                : streamingService.findAllById(request.streamings());
 
 
-        if(request.streamings() != null){
-            List<Streaming> streamings = streamingService.findAllById(request.streamings());
-            foundMovie.setStreamings(streamings);
-        }
+        MovieMapper.update(request, foundMovie, categories, streamings);
 
         foundMovie.setUpdatedAt(LocalDateTime.now());
 
         return MovieMapper.toDto(repository.save(foundMovie));
-
 
     }
 
