@@ -3,6 +3,7 @@ package br.com.movieflix.movieflix.domain.mapper;
 import br.com.movieflix.movieflix.domain.Category;
 import br.com.movieflix.movieflix.domain.dto.category.CategoryResponse;
 import br.com.movieflix.movieflix.domain.dto.category.CategoryRequest;
+import br.com.movieflix.movieflix.domain.dto.category.CategoryUpdate;
 import lombok.experimental.UtilityClass;
 
 @UtilityClass
@@ -20,4 +21,11 @@ public class CategoryMapper {
                 .name(entity.getName())
                 .build();
     }
+
+    public void update (CategoryUpdate dto, Category entity){
+        if(dto.name() != null){
+            entity.setName(dto.name());
+        }
+    }
+
 }

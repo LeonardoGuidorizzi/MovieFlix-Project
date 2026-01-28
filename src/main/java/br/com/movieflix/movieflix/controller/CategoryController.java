@@ -2,6 +2,7 @@ package br.com.movieflix.movieflix.controller;
 
 import br.com.movieflix.movieflix.domain.dto.category.CategoryResponse;
 import br.com.movieflix.movieflix.domain.dto.category.CategoryRequest;
+import br.com.movieflix.movieflix.domain.dto.category.CategoryUpdate;
 import br.com.movieflix.movieflix.service.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -36,6 +37,10 @@ public class CategoryController {
     não retornam o ResponseEntity completo ainda.
     Eles retornam um builder (um “montador” de resposta).
     * */
+    @PutMapping("/{id}")
+    public ResponseEntity<CategoryResponse> update (@PathVariable Long id, @RequestBody CategoryUpdate request){
+        return ResponseEntity.ok(service.update(id, request));
+    }
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteById(@PathVariable Long id){
         service.deleteById(id);
