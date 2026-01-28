@@ -1,4 +1,4 @@
-package br.com.movieflix.movieflix.security.service;
+package br.com.movieflix.movieflix.security.auth;
 
 import br.com.movieflix.movieflix.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
@@ -15,6 +15,6 @@ public class UserDetailsImplementation implements UserDetailsService {
     UserRepository repository;
     @Override
     public UserDetails loadUserByUsername(String userRegister) throws UsernameNotFoundException {
-        return repository.findByEmail(userRegister).orElseThrow(()-> new RuntimeException("Password or email could be wrong"));
+        return repository.findByEmail(userRegister).orElseThrow(()-> new RuntimeException("The password or email are incorrect"));
     }
 }
