@@ -1,7 +1,7 @@
 package br.com.movieflix.movieflix.controller;
 
-import br.com.movieflix.movieflix.entity.dto.category.CategoryResponse;
-import br.com.movieflix.movieflix.entity.dto.category.CategoryRequest;
+import br.com.movieflix.movieflix.domain.dto.category.CategoryResponse;
+import br.com.movieflix.movieflix.domain.dto.category.CategoryRequest;
 import br.com.movieflix.movieflix.service.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -14,19 +14,21 @@ import java.util.List;
 @RequestMapping("movieflix/category")
 public class CategoryController {
     @Autowired
-    private CategoryService categoryService;
-    @GetMapping()
-    public ResponseEntity<List<CategoryResponse>> getAllCategories(){
+    private CategoryService service;
 
-        return ResponseEntity.ok(categoryService.findAll().stream().toList()) ;
-    }
     @PostMapping
     public ResponseEntity<CategoryResponse> createCategory(@RequestBody CategoryRequest request){
-        return ResponseEntity.status(HttpStatus.CREATED).body(categoryService.create(request));
+        return ResponseEntity.status(HttpStatus.CREATED).body(service.create(request));
     }
+
+    @GetMapping()
+    public ResponseEntity<List<CategoryResponse>> getAll(){
+        return ResponseEntity.ok(service.findAll().stream().toList()) ;
+    }
+
     @GetMapping("/{id}")
-    public ResponseEntity<CategoryResponse> getByCategoryId(@PathVariable Long id){
-        return categoryService.findById(id).map(ResponseEntity::ok).orElse(ResponseEntity.notFound().build());
+    public ResponseEntity<CategoryResponse> getById(@PathVariable Long id){
+        return ResponseEntity.ok(service.findById(id));
     }
     /*
     * Por que precisa do build()?
@@ -35,8 +37,8 @@ public class CategoryController {
     Eles retornam um builder (um “montador” de resposta).
     * */
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteByCategoryId(@PathVariable Long id){
-        categoryService.deleteById(id);
-        return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
+    public ResponseEntity<Void> deleteById(@PathVariable Long id){
+        service.deleteById(id);
+        return ResponseEntity.noContent().build();
     }
 }

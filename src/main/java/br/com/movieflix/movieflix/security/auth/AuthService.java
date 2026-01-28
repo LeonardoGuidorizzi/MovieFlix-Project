@@ -1,8 +1,8 @@
 package br.com.movieflix.movieflix.security.auth;
 
-import br.com.movieflix.movieflix.entity.User;
-import br.com.movieflix.movieflix.entity.dto.Auth.LoginRequest;
-import br.com.movieflix.movieflix.entity.dto.Auth.LoginResponse;
+import br.com.movieflix.movieflix.domain.User;
+import br.com.movieflix.movieflix.domain.dto.Auth.LoginRequest;
+import br.com.movieflix.movieflix.domain.dto.Auth.LoginResponse;
 import br.com.movieflix.movieflix.security.jwt.TokenService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.AuthenticationManager;

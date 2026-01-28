@@ -1,7 +1,8 @@
 package br.com.movieflix.movieflix.repository;
 
-import br.com.movieflix.movieflix.entity.Streaming;
+import br.com.movieflix.movieflix.domain.Streaming;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface StreamingRepository extends JpaRepository<Streaming, Long> {
+    boolean existsByNameIgnoreCase(String name);
 }

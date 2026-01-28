@@ -1,6 +1,8 @@
 package br.com.movieflix.movieflix.security.config;
 
 import br.com.movieflix.movieflix.security.filter.SecurityFilter;
+import br.com.movieflix.movieflix.security.validation.handler.CustomAccessDeniedHandler;
+import br.com.movieflix.movieflix.security.validation.handler.CustomAuthenticationEntryPoint;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -20,12 +22,18 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 @RequiredArgsConstructor
 public class SecurityConfig {
     private final SecurityFilter securityFilter;
+    private final CustomAuthenticationEntryPoint authenticationEntryPoint;
+    private final CustomAccessDeniedHandler accessDeniedHandler;
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
             return http
                     .csrf(httpSecurityCsrfConfigurer -> httpSecurityCsrfConfigurer.disable())
                     .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+                    .exceptionHandling(ex -> ex
+                            .authenticationEntryPoint(authenticationEntryPoint)
+                            .accessDeniedHandler(accessDeniedHandler)
+                    )
                     .authorizeHttpRequests(authorize-> authorize
                             .requestMatchers(HttpMethod.POST, "/movieflix/auth/register", "/movieflix/auth/login").permitAll()
                             .anyRequest()

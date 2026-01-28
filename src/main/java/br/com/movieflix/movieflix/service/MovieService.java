@@ -1,12 +1,14 @@
 package br.com.movieflix.movieflix.service;
 
-import br.com.movieflix.movieflix.entity.Category;
-import br.com.movieflix.movieflix.entity.Movie;
-import br.com.movieflix.movieflix.entity.Streaming;
-import br.com.movieflix.movieflix.entity.dto.movie.MovieRequest;
-import br.com.movieflix.movieflix.entity.dto.movie.MovieResponse;
-import br.com.movieflix.movieflix.entity.dto.movie.MovieUpdateRequest;
-import br.com.movieflix.movieflix.entity.mapper.MovieMapper;
+import br.com.movieflix.movieflix.domain.Category;
+import br.com.movieflix.movieflix.domain.Movie;
+import br.com.movieflix.movieflix.domain.Streaming;
+import br.com.movieflix.movieflix.domain.dto.movie.MovieRequest;
+import br.com.movieflix.movieflix.domain.dto.movie.MovieResponse;
+import br.com.movieflix.movieflix.domain.dto.movie.MovieUpdateRequest;
+import br.com.movieflix.movieflix.domain.mapper.MovieMapper;
+import br.com.movieflix.movieflix.exception.business.BusinessException;
+import br.com.movieflix.movieflix.exception.notFound.ResourceNotFoundException;
 import br.com.movieflix.movieflix.repository.MovieRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -23,28 +25,24 @@ public class MovieService {
     private final CategoryService categoryService;
     private final StreamingService streamingService;
 
-    public List<MovieResponse> findAll (){
-        List<Movie> movies = repository.findAll();
-        return movies.stream().map(MovieMapper::toDto).toList();
-    }
-
-    public Optional<MovieResponse> findByid(Long id){
-        return repository.findById(id).map(MovieMapper::toDto);
-    }
 
     public MovieResponse create(MovieRequest request){
 
+        if (repository.existsByNameIgnoreCase(request.name())) {
+            throw new BusinessException("Movie already exists");
+        }
+
         List<Category> categories = categoryService.findAllById(request.categories());
         if (categories.size() != request.categories().size()){
-            throw new RuntimeException("Some category does not exist");
+            throw new BusinessException("Some category does not exist");
         }
 
 
         List<Streaming> streamings = streamingService.findAllById(request.streamings());
         if (streamings.size() != request.streamings().size()){
-            throw new RuntimeException("Some category does not exist");
+            throw new BusinessException("Some streaming does not exist");
         }
-         Movie movie = Movie.builder()
+        Movie movie = Movie.builder()
                 .name(request.name())
                 .description(request.description())
                 .releaseDate(request.releaseDate())
@@ -53,11 +51,20 @@ public class MovieService {
                 .streamings(streamings)
                 .build();
 
-       return MovieMapper.toDto(repository.save(movie));
+        return MovieMapper.toDto(repository.save(movie));
+    }
+
+    public List<MovieResponse> findAll (){
+        List<Movie> movies = repository.findAll();
+        return movies.stream().map(MovieMapper::toDto).toList();
+    }
+
+    public MovieResponse findById(Long id){
+        return repository.findById(id).map(MovieMapper::toDto).orElseThrow(()-> new ResourceNotFoundException("Movie", id));
     }
 
     public MovieResponse update(Long id, MovieUpdateRequest request){
-        Movie foundMovie = repository.findById(id).orElseThrow(()->new RuntimeException("Movie not found"));
+        Movie foundMovie = repository.findById(id).orElseThrow(()-> new ResourceNotFoundException("Movie", id));
         if(request.name() != null )foundMovie.setName(request.name());
         if(request.description() != null )foundMovie.setName(request.name());
         if(request.releaseDate() != null )foundMovie.setName(request.name());
@@ -80,17 +87,28 @@ public class MovieService {
 
 
     }
-    public void deleteById(Long id){
-        repository.deleteById(id);
-    }
 
     public List<MovieResponse> findMovieByCategoryId(Long categoryId){
+        if(!repository.existsById(categoryId)){
+            throw new ResourceNotFoundException("Movie", categoryId);
+        }
         List<Movie> moviesByCategoryIds = repository.findMovieByCategories_Id(categoryId);
         return moviesByCategoryIds.stream().map(MovieMapper::toDto).toList();
     }
 
     public List<MovieResponse> findMovieByStreamingId(Long streamingId){
+        if(!repository.existsById(streamingId)){
+            throw new ResourceNotFoundException("Streaming", streamingId);
+        }
         List<Movie> moviesByStreamingId = repository.findMovieByStreamings_Id(streamingId);
         return moviesByStreamingId.stream().map(MovieMapper::toDto).toList();
+    }
+
+    public void deleteById(Long id){
+
+        if(!repository.existsById(id)){
+            throw new ResourceNotFoundException("Movie", id);
+        }
+        repository.deleteById(id);
     }
 }
