@@ -17,6 +17,11 @@ spring:
   flyway:
     enabled: true
 
+springdoc:
+  api-doc:
+    path: /api/api-docs
+  swagger-ui:
+    path: /swagger/index.html
 
 movieflix:
   security:
