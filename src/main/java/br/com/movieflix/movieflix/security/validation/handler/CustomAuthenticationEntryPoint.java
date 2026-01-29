@@ -1,6 +1,5 @@
 package br.com.movieflix.movieflix.security.validation.handler;
 
-import br.com.movieflix.movieflix.exception.validation.response.ErrorResponse;
 import br.com.movieflix.movieflix.security.validation.response.AuthResponse;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.servlet.http.HttpServletRequest;
