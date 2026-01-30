@@ -4,6 +4,7 @@ import br.com.movieflix.movieflix.domain.dto.category.CategoryResponse;
 import br.com.movieflix.movieflix.domain.dto.category.CategoryRequest;
 import br.com.movieflix.movieflix.domain.dto.category.CategoryUpdateRequest;
 import br.com.movieflix.movieflix.service.CategoryService;
+import br.com.movieflix.movieflix.swagger.Doc.CategoryControllerDoc;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -13,7 +14,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("movieflix/category")
-public class CategoryController {
+public class CategoryController implements CategoryControllerDoc {
     @Autowired
     private CategoryService service;
 

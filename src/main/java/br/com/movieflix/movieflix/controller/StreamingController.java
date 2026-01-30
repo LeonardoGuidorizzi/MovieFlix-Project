@@ -4,6 +4,7 @@ import br.com.movieflix.movieflix.domain.dto.streaming.StreamingRequest;
 import br.com.movieflix.movieflix.domain.dto.streaming.StreamingResponse;
 import br.com.movieflix.movieflix.domain.dto.streaming.StreamingUpdateRequest;
 import br.com.movieflix.movieflix.service.StreamingService;
+import br.com.movieflix.movieflix.swagger.Doc.StreamingControllerDoc;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -13,7 +14,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("movieflix/streaming")
-public class StreamingController {
+public class StreamingController implements StreamingControllerDoc {
     @Autowired
     private StreamingService service;
 

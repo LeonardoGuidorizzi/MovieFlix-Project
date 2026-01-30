@@ -4,6 +4,7 @@ import br.com.movieflix.movieflix.domain.dto.movie.MovieRequest;
 import br.com.movieflix.movieflix.domain.dto.movie.MovieResponse;
 import br.com.movieflix.movieflix.domain.dto.movie.MovieUpdateRequest;
 import br.com.movieflix.movieflix.service.MovieService;
+import br.com.movieflix.movieflix.swagger.Doc.MovieControllerDoc;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -14,7 +15,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("movieflix/movie")
-public class MovieController {
+public class MovieController implements MovieControllerDoc {
     @Autowired
     private MovieService service;
 
