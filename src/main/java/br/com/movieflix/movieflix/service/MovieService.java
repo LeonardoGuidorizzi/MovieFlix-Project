@@ -3,9 +3,9 @@ package br.com.movieflix.movieflix.service;
 import br.com.movieflix.movieflix.domain.Category;
 import br.com.movieflix.movieflix.domain.Movie;
 import br.com.movieflix.movieflix.domain.Streaming;
-import br.com.movieflix.movieflix.domain.dto.movie.MovieRequest;
-import br.com.movieflix.movieflix.domain.dto.movie.MovieResponse;
-import br.com.movieflix.movieflix.domain.dto.movie.MovieUpdateRequest;
+import br.com.movieflix.movieflix.domain.dto.movie.MovieRequestDTO;
+import br.com.movieflix.movieflix.domain.dto.movie.MovieResponseDTO;
+import br.com.movieflix.movieflix.domain.dto.movie.MovieUpdateRequestDTO;
 import br.com.movieflix.movieflix.domain.mapper.MovieMapper;
 import br.com.movieflix.movieflix.exception.business.BusinessException;
 import br.com.movieflix.movieflix.exception.notFound.ResourceNotFoundException;
@@ -15,7 +15,6 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -26,7 +25,7 @@ public class MovieService {
     private final StreamingService streamingService;
 
 
-    public MovieResponse create(MovieRequest request){
+    public MovieResponseDTO create(MovieRequestDTO request){
 
         if (repository.existsByNameIgnoreCase(request.name())) {
             throw new BusinessException("Movie already exists");
@@ -54,16 +53,16 @@ public class MovieService {
         return MovieMapper.toDto(repository.save(movie));
     }
 
-    public List<MovieResponse> findAll (){
+    public List<MovieResponseDTO> findAll (){
         List<Movie> movies = repository.findAll();
         return movies.stream().map(MovieMapper::toDto).toList();
     }
 
-    public MovieResponse findById(Long id){
+    public MovieResponseDTO findById(Long id){
         return repository.findById(id).map(MovieMapper::toDto).orElseThrow(()-> new ResourceNotFoundException("Movie", id));
     }
 
-    public MovieResponse update(Long id, MovieUpdateRequest request){
+    public MovieResponseDTO update(Long id, MovieUpdateRequestDTO request){
         Movie foundMovie = repository.findById(id).orElseThrow(()-> new ResourceNotFoundException("Movie", id));
 
         List<Category> categories = request.categories() == null
@@ -83,7 +82,7 @@ public class MovieService {
 
     }
 
-    public List<MovieResponse> findMovieByCategoryId(Long categoryId){
+    public List<MovieResponseDTO> findMovieByCategoryId(Long categoryId){
         if(!repository.existsById(categoryId)){
             throw new ResourceNotFoundException("Movie", categoryId);
         }
@@ -91,7 +90,7 @@ public class MovieService {
         return moviesByCategoryIds.stream().map(MovieMapper::toDto).toList();
     }
 
-    public List<MovieResponse> findMovieByStreamingId(Long streamingId){
+    public List<MovieResponseDTO> findMovieByStreamingId(Long streamingId){
         if(!repository.existsById(streamingId)){
             throw new ResourceNotFoundException("Streaming", streamingId);
         }

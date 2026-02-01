@@ -1,9 +1,9 @@
 package br.com.movieflix.movieflix.service;
 
 import br.com.movieflix.movieflix.domain.Category;
-import br.com.movieflix.movieflix.domain.dto.category.CategoryResponse;
-import br.com.movieflix.movieflix.domain.dto.category.CategoryRequest;
-import br.com.movieflix.movieflix.domain.dto.category.CategoryUpdateRequest;
+import br.com.movieflix.movieflix.domain.dto.category.CategoryResponseDTO;
+import br.com.movieflix.movieflix.domain.dto.category.CategoryRequestDTO;
+import br.com.movieflix.movieflix.domain.dto.category.CategoryUpdateRequestDTO;
 import br.com.movieflix.movieflix.domain.mapper.CategoryMapper;
 import br.com.movieflix.movieflix.exception.business.BusinessException;
 import br.com.movieflix.movieflix.exception.notFound.ResourceNotFoundException;
@@ -18,19 +18,19 @@ import java.util.List;
 public class CategoryService {
     private final CategoryRepository repository;
 
-    public CategoryResponse create(CategoryRequest request){
+    public CategoryResponseDTO create(CategoryRequestDTO request){
         if (repository.existsByNameIgnoreCase(request.name())) {
             throw new BusinessException("Category already exists");
         }
         return CategoryMapper.toDto(repository.save(CategoryMapper.toEntity(request)));
     }
 
-    public List<CategoryResponse> findAll(){
+    public List<CategoryResponseDTO> findAll(){
         List<Category> categories =  repository.findAll();
         return categories.stream().map(CategoryMapper::toDto).toList();
     }
 
-    public CategoryResponse findById(Long id){
+    public CategoryResponseDTO findById(Long id){
         return repository.findById(id).map(CategoryMapper::toDto).orElseThrow(()-> new ResourceNotFoundException("Category", id));
     }
 
@@ -38,7 +38,7 @@ public class CategoryService {
         return repository.findAllById(categoryIds);
     }
 
-    public CategoryResponse update(Long id, CategoryUpdateRequest request ){
+    public CategoryResponseDTO update(Long id, CategoryUpdateRequestDTO request ){
         Category foundCategory = repository.findById(id).orElseThrow(()-> new ResourceNotFoundException("Category", id));
         CategoryMapper.update(request, foundCategory);
         Category category = repository.save(foundCategory);

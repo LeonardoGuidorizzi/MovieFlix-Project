@@ -1,9 +1,9 @@
 package br.com.movieflix.movieflix.service;
 
 import br.com.movieflix.movieflix.domain.Streaming;
-import br.com.movieflix.movieflix.domain.dto.streaming.StreamingResponse;
-import br.com.movieflix.movieflix.domain.dto.streaming.StreamingRequest;
-import br.com.movieflix.movieflix.domain.dto.streaming.StreamingUpdateRequest;
+import br.com.movieflix.movieflix.domain.dto.streaming.StreamingResponseDTO;
+import br.com.movieflix.movieflix.domain.dto.streaming.StreamingRequestDTO;
+import br.com.movieflix.movieflix.domain.dto.streaming.StreamingUpdateRequestDTO;
 import br.com.movieflix.movieflix.domain.mapper.StreamingMapper;
 import br.com.movieflix.movieflix.exception.business.BusinessException;
 import br.com.movieflix.movieflix.exception.notFound.ResourceNotFoundException;
@@ -18,25 +18,25 @@ import java.util.List;
 public class StreamingService {
     private final StreamingRepository repository;
 
-    public StreamingResponse create(StreamingRequest request){
+    public StreamingResponseDTO create(StreamingRequestDTO request){
         if (repository.existsByNameIgnoreCase(request.name())) {
             throw new BusinessException("Movie already exists");
         }
         return StreamingMapper.toDto(repository.save(StreamingMapper.toEntity(request)));
     }
 
-    public List<StreamingResponse> findAll(){
+    public List<StreamingResponseDTO> findAll(){
                List<Streaming> streamings = repository.findAll();
                return streamings.stream().map(StreamingMapper::toDto).toList();
     }
-    public StreamingResponse findById(Long id){
+    public StreamingResponseDTO findById(Long id){
         return repository.findById(id).map(StreamingMapper::toDto).orElseThrow(()-> new ResourceNotFoundException("Streaming", id));
     }
 
     public List<Streaming> findAllById(List<Long> streamingIds){
         return repository.findAllById(streamingIds);
     }
-    public StreamingResponse update (Long id, StreamingUpdateRequest request){
+    public StreamingResponseDTO update (Long id, StreamingUpdateRequestDTO request){
         Streaming foundStreaming = repository.findById(id).orElseThrow(()-> new ResourceNotFoundException("Streaming", id));
         StreamingMapper.update(request, foundStreaming);
         Streaming streaming = repository.save(foundStreaming);

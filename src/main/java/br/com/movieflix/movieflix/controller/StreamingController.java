@@ -1,8 +1,8 @@
 package br.com.movieflix.movieflix.controller;
 
-import br.com.movieflix.movieflix.domain.dto.streaming.StreamingRequest;
-import br.com.movieflix.movieflix.domain.dto.streaming.StreamingResponse;
-import br.com.movieflix.movieflix.domain.dto.streaming.StreamingUpdateRequest;
+import br.com.movieflix.movieflix.domain.dto.streaming.StreamingRequestDTO;
+import br.com.movieflix.movieflix.domain.dto.streaming.StreamingResponseDTO;
+import br.com.movieflix.movieflix.domain.dto.streaming.StreamingUpdateRequestDTO;
 import br.com.movieflix.movieflix.service.StreamingService;
 import br.com.movieflix.movieflix.swagger.Doc.StreamingControllerDoc;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,22 +19,22 @@ public class StreamingController implements StreamingControllerDoc {
     private StreamingService service;
 
     @PostMapping
-    public ResponseEntity<StreamingResponse> create(@RequestBody StreamingRequest request){
+    public ResponseEntity<StreamingResponseDTO> create(@RequestBody StreamingRequestDTO request){
         return ResponseEntity.status(HttpStatus.CREATED).body(service.create(request));
     }
 
     @GetMapping()
-    public ResponseEntity<List<StreamingResponse>>getAll(){
+    public ResponseEntity<List<StreamingResponseDTO>>getAll(){
         return ResponseEntity.ok(service.findAll().stream().toList());
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<StreamingResponse> getById(@PathVariable Long id){
+    public ResponseEntity<StreamingResponseDTO> getById(@PathVariable Long id){
         return ResponseEntity.ok(service.findById(id));
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<StreamingResponse> update(@PathVariable Long id, @RequestBody StreamingUpdateRequest request){
+    public ResponseEntity<StreamingResponseDTO> update(@PathVariable Long id, @RequestBody StreamingUpdateRequestDTO request){
         return ResponseEntity.ok(service.update(id, request));
     }
 

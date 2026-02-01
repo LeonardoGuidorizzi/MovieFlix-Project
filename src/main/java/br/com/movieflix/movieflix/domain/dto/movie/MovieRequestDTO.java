@@ -1,15 +1,10 @@
 package br.com.movieflix.movieflix.domain.dto.movie;
-
-import br.com.movieflix.movieflix.domain.dto.category.CategoryResponse;
-import br.com.movieflix.movieflix.domain.dto.streaming.StreamingResponse;
 import com.fasterxml.jackson.annotation.JsonFormat;
-import lombok.Builder;
 
 import java.time.LocalDate;
 import java.util.List;
-@Builder
-public record MovieResponse(
-        Long id,
+
+public record MovieRequestDTO(
         String name,
         String description,
 
@@ -17,6 +12,6 @@ public record MovieResponse(
         LocalDate releaseDate,
 
         Double rating,
-        List<CategoryResponse> categories,
-        List<StreamingResponse> streamings
+        List<Long> categories,
+        List<Long> streamings
 ) {}

@@ -6,10 +6,10 @@ import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import io.swagger.v3.oas.annotations.parameters.RequestBody;
 import org.springframework.http.ResponseEntity;
-import br.com.movieflix.movieflix.domain.dto.Auth.LoginRequest;
-import br.com.movieflix.movieflix.domain.dto.Auth.LoginResponse;
-import br.com.movieflix.movieflix.domain.dto.Auth.RegisterReponse;
-import br.com.movieflix.movieflix.domain.dto.Auth.RegisterRequest;
+import br.com.movieflix.movieflix.domain.dto.Auth.LoginRequestDTO;
+import br.com.movieflix.movieflix.domain.dto.Auth.LoginResponseDTO;
+import br.com.movieflix.movieflix.domain.dto.Auth.RegisterReponseDTO;
+import br.com.movieflix.movieflix.domain.dto.Auth.RegisterRequestDTO;
 
 @Tag(name = "Authentication", description = "Authentication and user registration endpoints")
 public interface AuthControllerDoc {
@@ -19,9 +19,9 @@ public interface AuthControllerDoc {
             @ApiResponse(responseCode = "201", description = "User registered successfully"),
             @ApiResponse(responseCode = "400", description = "User already exists or invalid data")
     })
-    ResponseEntity<RegisterReponse> register(
+    ResponseEntity<RegisterReponseDTO> register(
             @RequestBody(description = "User registration data", required = true)
-            RegisterRequest request
+            RegisterRequestDTO request
     );
 
     @Operation(summary = "Authenticate user and generate JWT token")
@@ -29,8 +29,8 @@ public interface AuthControllerDoc {
             @ApiResponse(responseCode = "200", description = "User authenticated successfully"),
             @ApiResponse(responseCode = "401", description = "Invalid credentials")
     })
-    ResponseEntity<LoginResponse> login(
+    ResponseEntity<LoginResponseDTO> login(
             @RequestBody(description = "User login credentials", required = true)
-            LoginRequest request
+            LoginRequestDTO request
     );
 }

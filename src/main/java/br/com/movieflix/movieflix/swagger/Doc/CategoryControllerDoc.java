@@ -1,8 +1,8 @@
 package br.com.movieflix.movieflix.swagger.Doc;
 
-import br.com.movieflix.movieflix.domain.dto.category.CategoryRequest;
-import br.com.movieflix.movieflix.domain.dto.category.CategoryResponse;
-import br.com.movieflix.movieflix.domain.dto.category.CategoryUpdateRequest;
+import br.com.movieflix.movieflix.domain.dto.category.CategoryRequestDTO;
+import br.com.movieflix.movieflix.domain.dto.category.CategoryResponseDTO;
+import br.com.movieflix.movieflix.domain.dto.category.CategoryUpdateRequestDTO;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
@@ -24,23 +24,23 @@ public interface CategoryControllerDoc {
             @ApiResponse(responseCode = "201", description = "Category created successfully"),
             @ApiResponse(responseCode = "400", description = "Category already exists")
     })
-    ResponseEntity<CategoryResponse> createCategory(
+    ResponseEntity<CategoryResponseDTO> createCategory(
             @RequestBody(description = "Category data to be created", required = true)
-            CategoryRequest request
+            CategoryRequestDTO request
     );
 
     @Operation(summary = "Get all categories")
     @ApiResponses({
             @ApiResponse(responseCode = "200", description = "List of categories returned successfully")
     })
-    ResponseEntity<List<CategoryResponse>> getAll();
+    ResponseEntity<List<CategoryResponseDTO>> getAll();
 
     @Operation(summary = "Get category by ID")
     @ApiResponses({
             @ApiResponse(responseCode = "200", description = "Category found"),
             @ApiResponse(responseCode = "404", description = "Category not found")
     })
-    ResponseEntity<CategoryResponse> getById(
+    ResponseEntity<CategoryResponseDTO> getById(
             @Parameter(description = "Category ID", example = "1")
             @PathVariable Long id
     );
@@ -50,11 +50,11 @@ public interface CategoryControllerDoc {
             @ApiResponse(responseCode = "200", description = "Category updated successfully"),
             @ApiResponse(responseCode = "404", description = "Category not found")
     })
-    ResponseEntity<CategoryResponse> update(
+    ResponseEntity<CategoryResponseDTO> update(
             @Parameter(description = "Category ID", example = "1")
             @PathVariable Long id,
             @RequestBody(description = "Category data to update", required = true)
-            CategoryUpdateRequest request
+            CategoryUpdateRequestDTO request
     );
 
     @Operation(summary = "Delete category by ID")
