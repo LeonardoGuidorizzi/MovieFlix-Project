@@ -3,7 +3,7 @@ package br.com.movieflix.movieflix.domain.dto.movie;
 import java.time.LocalDate;
 import java.util.List;
 
-public record MovieUpdateRequest(
+public record MovieUpdateRequestDTO(
         String name,
         String description,
         LocalDate releaseDate,

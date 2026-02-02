@@ -9,9 +9,9 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
-import br.com.movieflix.movieflix.domain.dto.movie.MovieRequest;
-import br.com.movieflix.movieflix.domain.dto.movie.MovieResponse;
-import br.com.movieflix.movieflix.domain.dto.movie.MovieUpdateRequest;
+import br.com.movieflix.movieflix.domain.dto.movie.MovieRequestDTO;
+import br.com.movieflix.movieflix.domain.dto.movie.MovieResponseDTO;
+import br.com.movieflix.movieflix.domain.dto.movie.MovieUpdateRequestDTO;
 
 import java.util.List;
 
@@ -22,23 +22,23 @@ public interface MovieControllerDoc {
             @ApiResponse(responseCode = "201", description = "Movie created successfully"),
             @ApiResponse(responseCode = "400", description = "Movie already exists or invalid category/streaming")
     })
-    ResponseEntity<MovieResponse> create(
+    ResponseEntity<MovieResponseDTO> create(
             @RequestBody(description = "Movie data to be created", required = true)
-            MovieRequest request
+            MovieRequestDTO request
     );
 
     @Operation(summary = "Get all movies")
     @ApiResponses({
             @ApiResponse(responseCode = "200", description = "List of movies returned successfully")
     })
-    ResponseEntity<List<MovieResponse>> getAll();
+    ResponseEntity<List<MovieResponseDTO>> getAll();
 
     @Operation(summary = "Get movie by ID")
     @ApiResponses({
             @ApiResponse(responseCode = "200", description = "Movie found"),
             @ApiResponse(responseCode = "404", description = "Movie not found")
     })
-    ResponseEntity<MovieResponse> getById(
+    ResponseEntity<MovieResponseDTO> getById(
             @Parameter(description = "Movie ID", example = "1")
             @PathVariable Long id
     );
@@ -48,7 +48,7 @@ public interface MovieControllerDoc {
             @ApiResponse(responseCode = "200", description = "Movies returned successfully"),
             @ApiResponse(responseCode = "404", description = "Category not found")
     })
-    ResponseEntity<List<MovieResponse>> getMoviesByCategoryId(
+    ResponseEntity<List<MovieResponseDTO>> getMoviesByCategoryId(
             @Parameter(description = "Category ID", example = "2")
             @RequestParam(name = "category") Long id
     );
@@ -58,7 +58,7 @@ public interface MovieControllerDoc {
             @ApiResponse(responseCode = "200", description = "Movies returned successfully"),
             @ApiResponse(responseCode = "404", description = "Streaming not found")
     })
-    ResponseEntity<List<MovieResponse>> getMoviesByStreamingId(
+    ResponseEntity<List<MovieResponseDTO>> getMoviesByStreamingId(
             @Parameter(description = "Streaming ID", example = "3")
             @RequestParam(name = "streaming") Long id
     );
@@ -68,11 +68,11 @@ public interface MovieControllerDoc {
             @ApiResponse(responseCode = "200", description = "Movie updated successfully"),
             @ApiResponse(responseCode = "404", description = "Movie not found")
     })
-    ResponseEntity<MovieResponse> update(
+    ResponseEntity<MovieResponseDTO> update(
             @Parameter(description = "Movie ID", example = "1")
             @PathVariable Long id,
             @RequestBody(description = "Movie data to update", required = true)
-            MovieUpdateRequest request
+            MovieUpdateRequestDTO request
     );
 
     @Operation(summary = "Delete movie by ID")

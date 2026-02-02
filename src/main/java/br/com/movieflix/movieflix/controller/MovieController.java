@@ -1,8 +1,8 @@
 package br.com.movieflix.movieflix.controller;
 
-import br.com.movieflix.movieflix.domain.dto.movie.MovieRequest;
-import br.com.movieflix.movieflix.domain.dto.movie.MovieResponse;
-import br.com.movieflix.movieflix.domain.dto.movie.MovieUpdateRequest;
+import br.com.movieflix.movieflix.domain.dto.movie.MovieRequestDTO;
+import br.com.movieflix.movieflix.domain.dto.movie.MovieResponseDTO;
+import br.com.movieflix.movieflix.domain.dto.movie.MovieUpdateRequestDTO;
 import br.com.movieflix.movieflix.service.MovieService;
 import br.com.movieflix.movieflix.swagger.Doc.MovieControllerDoc;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,32 +20,32 @@ public class MovieController implements MovieControllerDoc {
     private MovieService service;
 
     @PostMapping()
-    public ResponseEntity<MovieResponse> create(@RequestBody MovieRequest request){
+    public ResponseEntity<MovieResponseDTO> create(@RequestBody MovieRequestDTO request){
         return ResponseEntity.status(HttpStatus.CREATED).body(service.create(request));
     }
 
     @GetMapping()
-    public ResponseEntity<List<MovieResponse>> getAll(){
+    public ResponseEntity<List<MovieResponseDTO>> getAll(){
         return  ResponseEntity.ok(service.findAll().stream().toList());
     }
     @GetMapping("/{id}")
-    public ResponseEntity<MovieResponse> getById(@PathVariable Long id) {
+    public ResponseEntity<MovieResponseDTO> getById(@PathVariable Long id) {
         return ResponseEntity.ok(service.findById(id));
     }
 
     @GetMapping("/search/byCategory")
-    public ResponseEntity<List<MovieResponse>> getMoviesByCategoryId(@RequestParam(name = "category") Long id){
+    public ResponseEntity<List<MovieResponseDTO>> getMoviesByCategoryId(@RequestParam(name = "category") Long id){
         return ResponseEntity.ok(service.findMovieByCategoryId(id));
     }
 
     @GetMapping("/search/byStreaming")
-    public ResponseEntity<List<MovieResponse>> getMoviesByStreamingId(@RequestParam(name = "streaming") Long id){
+    public ResponseEntity<List<MovieResponseDTO>> getMoviesByStreamingId(@RequestParam(name = "streaming") Long id){
         return ResponseEntity.ok(service.findMovieByStreamingId(id));
     }
     @PutMapping("/{id}")
-    public ResponseEntity<MovieResponse> update(
+    public ResponseEntity<MovieResponseDTO> update(
             @PathVariable Long id,
-            @RequestBody MovieUpdateRequest request) {
+            @RequestBody MovieUpdateRequestDTO request) {
 
         return ResponseEntity.ok(service.update(id, request));
     }

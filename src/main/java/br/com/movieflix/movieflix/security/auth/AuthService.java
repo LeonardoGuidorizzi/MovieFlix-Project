@@ -1,8 +1,8 @@
 package br.com.movieflix.movieflix.security.auth;
 
 import br.com.movieflix.movieflix.domain.User;
-import br.com.movieflix.movieflix.domain.dto.Auth.LoginRequest;
-import br.com.movieflix.movieflix.domain.dto.Auth.LoginResponse;
+import br.com.movieflix.movieflix.domain.dto.Auth.LoginRequestDTO;
+import br.com.movieflix.movieflix.domain.dto.Auth.LoginResponseDTO;
 import br.com.movieflix.movieflix.security.jwt.TokenService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -16,7 +16,7 @@ public class AuthService{
     private final AuthenticationManager authenticationManager;
     private final TokenService tokenService;
 
-    public LoginResponse login (LoginRequest request){
+    public LoginResponseDTO login (LoginRequestDTO request){
         UsernamePasswordAuthenticationToken authToken =
                 new UsernamePasswordAuthenticationToken(
                         request.email(),
@@ -28,7 +28,7 @@ public class AuthService{
 
         User user = (User) authentication.getPrincipal();
         String token = tokenService.generateToken(user);
-        return  new LoginResponse(token);
+        return  new LoginResponseDTO(token);
     }
 
 }

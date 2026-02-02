@@ -3,19 +3,18 @@ package br.com.movieflix.movieflix.domain.mapper;
 import br.com.movieflix.movieflix.domain.Category;
 import br.com.movieflix.movieflix.domain.Movie;
 import br.com.movieflix.movieflix.domain.Streaming;
-import br.com.movieflix.movieflix.domain.dto.category.CategoryResponse;
-import br.com.movieflix.movieflix.domain.dto.movie.MovieResponse;
-import br.com.movieflix.movieflix.domain.dto.movie.MovieRequest;
-import br.com.movieflix.movieflix.domain.dto.movie.MovieUpdateRequest;
-import br.com.movieflix.movieflix.domain.dto.streaming.StreamingResponse;
-import br.com.movieflix.movieflix.domain.dto.streaming.StreamingUpdateRequest;
+import br.com.movieflix.movieflix.domain.dto.category.CategoryResponseDTO;
+import br.com.movieflix.movieflix.domain.dto.movie.MovieResponseDTO;
+import br.com.movieflix.movieflix.domain.dto.movie.MovieRequestDTO;
+import br.com.movieflix.movieflix.domain.dto.movie.MovieUpdateRequestDTO;
+import br.com.movieflix.movieflix.domain.dto.streaming.StreamingResponseDTO;
 import lombok.experimental.UtilityClass;
 
 import java.util.List;
 
 @UtilityClass
 public class MovieMapper {
-    public static Movie toEntity(MovieRequest request){
+    public static Movie toEntity(MovieRequestDTO request){
         List<Category> categories = request.categories().stream()
                 .map(categoryId -> Category.builder().id(categoryId).build())
                 .toList();
@@ -34,16 +33,16 @@ public class MovieMapper {
                 .build();
     }
 
-    public static MovieResponse toDto(Movie entity){
-        List<CategoryResponse> categories = entity.getCategories().stream()
+    public static MovieResponseDTO toDto(Movie entity){
+        List<CategoryResponseDTO> categories = entity.getCategories().stream()
                 .map(category -> CategoryMapper.toDto(category))
                 .toList();
 
-        List<StreamingResponse> streamings = entity.getStreamings().stream()
+        List<StreamingResponseDTO> streamings = entity.getStreamings().stream()
                 .map(streaming -> StreamingMapper.toDto(streaming))
                 .toList();
 
-        return MovieResponse.builder()
+        return MovieResponseDTO.builder()
                 .id(entity.getId())
                 .name(entity.getName())
                 .description(entity.getDescription())
@@ -55,7 +54,7 @@ public class MovieMapper {
     }
 
     public void update (
-            MovieUpdateRequest request,
+            MovieUpdateRequestDTO request,
             Movie entity,
             List<Category> categories,
             List<Streaming> streamings

@@ -1,8 +1,8 @@
 package br.com.movieflix.movieflix.controller;
 
-import br.com.movieflix.movieflix.domain.dto.category.CategoryResponse;
-import br.com.movieflix.movieflix.domain.dto.category.CategoryRequest;
-import br.com.movieflix.movieflix.domain.dto.category.CategoryUpdateRequest;
+import br.com.movieflix.movieflix.domain.dto.category.CategoryResponseDTO;
+import br.com.movieflix.movieflix.domain.dto.category.CategoryRequestDTO;
+import br.com.movieflix.movieflix.domain.dto.category.CategoryUpdateRequestDTO;
 import br.com.movieflix.movieflix.service.CategoryService;
 import br.com.movieflix.movieflix.swagger.Doc.CategoryControllerDoc;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,17 +19,17 @@ public class CategoryController implements CategoryControllerDoc {
     private CategoryService service;
 
     @PostMapping
-    public ResponseEntity<CategoryResponse> createCategory(@RequestBody CategoryRequest request){
+    public ResponseEntity<CategoryResponseDTO> createCategory(@RequestBody CategoryRequestDTO request){
         return ResponseEntity.status(HttpStatus.CREATED).body(service.create(request));
     }
 
     @GetMapping()
-    public ResponseEntity<List<CategoryResponse>> getAll(){
+    public ResponseEntity<List<CategoryResponseDTO>> getAll(){
         return ResponseEntity.ok(service.findAll().stream().toList()) ;
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<CategoryResponse> getById(@PathVariable Long id){
+    public ResponseEntity<CategoryResponseDTO> getById(@PathVariable Long id){
         return ResponseEntity.ok(service.findById(id));
     }
     /*
@@ -39,7 +39,7 @@ public class CategoryController implements CategoryControllerDoc {
     Eles retornam um builder (um “montador” de resposta).
     * */
     @PutMapping("/{id}")
-    public ResponseEntity<CategoryResponse> update (@PathVariable Long id, @RequestBody CategoryUpdateRequest request){
+    public ResponseEntity<CategoryResponseDTO> update (@PathVariable Long id, @RequestBody CategoryUpdateRequestDTO request){
         return ResponseEntity.ok(service.update(id, request));
     }
     @DeleteMapping("/{id}")
