@@ -1,4 +1,9 @@
 package br.com.movieflix.movieflix.domain.dto.category;
 
-public record CategoryRequestDTO(String name) {
+import jakarta.validation.constraints.NotBlank;
+
+public record CategoryRequestDTO(
+        @NotBlank(message = "The category's name is required.")
+        String name
+) {
 }
