@@ -83,7 +83,7 @@ Fluxo básico:
 A documentação da API pode ser acessada via **Swagger**:
 
 ```
-http://localhost:8080/swagger-ui.html
+http://localhost:8080/swagger/swagger-ui/index.html#/
 ```
 
 ---
