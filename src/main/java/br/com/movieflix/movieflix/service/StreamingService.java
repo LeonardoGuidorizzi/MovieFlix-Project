@@ -2,7 +2,7 @@ package br.com.movieflix.movieflix.service;
 
 import br.com.movieflix.movieflix.domain.Streaming;
 import br.com.movieflix.movieflix.domain.dto.streaming.StreamingResponseDTO;
-import br.com.movieflix.movieflix.domain.dto.streaming.StreamingRequestDTO;
+import br.com.movieflix.movieflix.domain.dto.streaming.StreamingCreateRequestDTO;
 import br.com.movieflix.movieflix.domain.dto.streaming.StreamingUpdateRequestDTO;
 import br.com.movieflix.movieflix.domain.mapper.StreamingMapper;
 import br.com.movieflix.movieflix.exception.business.BusinessException;
@@ -18,7 +18,7 @@ import java.util.List;
 public class StreamingService {
     private final StreamingRepository repository;
 
-    public StreamingResponseDTO create(StreamingRequestDTO request){
+    public StreamingResponseDTO create(StreamingCreateRequestDTO request){
         if (repository.existsByNameIgnoreCase(request.name())) {
             throw new BusinessException("Movie already exists");
         }

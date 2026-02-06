@@ -8,7 +8,7 @@ import io.swagger.v3.oas.annotations.parameters.RequestBody;
 import io.swagger.v3.oas.annotations.Parameter;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
-import br.com.movieflix.movieflix.domain.dto.streaming.StreamingRequestDTO;
+import br.com.movieflix.movieflix.domain.dto.streaming.StreamingCreateRequestDTO;
 import br.com.movieflix.movieflix.domain.dto.streaming.StreamingResponseDTO;
 import br.com.movieflix.movieflix.domain.dto.streaming.StreamingUpdateRequestDTO;
 
@@ -25,7 +25,7 @@ public interface StreamingControllerDoc {
     })
     ResponseEntity<StreamingResponseDTO> create(
             @RequestBody(description = "Streaming data to be created", required = true)
-            StreamingRequestDTO request
+            StreamingCreateRequestDTO request
     );
 
     @Operation(summary = "Get all streaming platforms")

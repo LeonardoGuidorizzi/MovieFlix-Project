@@ -5,7 +5,7 @@ import br.com.movieflix.movieflix.domain.Movie;
 import br.com.movieflix.movieflix.domain.Streaming;
 import br.com.movieflix.movieflix.domain.dto.category.CategoryResponseDTO;
 import br.com.movieflix.movieflix.domain.dto.movie.MovieResponseDTO;
-import br.com.movieflix.movieflix.domain.dto.movie.MovieRequestDTO;
+import br.com.movieflix.movieflix.domain.dto.movie.MovieCreateRequestDTO;
 import br.com.movieflix.movieflix.domain.dto.movie.MovieUpdateRequestDTO;
 import br.com.movieflix.movieflix.domain.dto.streaming.StreamingResponseDTO;
 import lombok.experimental.UtilityClass;
@@ -15,7 +15,7 @@ import java.util.List;
 
 @UtilityClass
 public class MovieMapper {
-    public static Movie toEntity(MovieRequestDTO request){
+    public static Movie toEntity(MovieCreateRequestDTO request){
         List<Category> categories = request.categories().stream()
                 .map(categoryId -> Category.builder().id(categoryId).build())
                 .toList();

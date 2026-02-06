@@ -1,6 +1,6 @@
 package br.com.movieflix.movieflix.controller;
 
-import br.com.movieflix.movieflix.domain.dto.movie.MovieRequestDTO;
+import br.com.movieflix.movieflix.domain.dto.movie.MovieCreateRequestDTO;
 import br.com.movieflix.movieflix.domain.dto.movie.MovieResponseDTO;
 import br.com.movieflix.movieflix.domain.dto.movie.MovieUpdateRequestDTO;
 import br.com.movieflix.movieflix.service.MovieService;
@@ -20,7 +20,7 @@ public class MovieController implements MovieControllerDoc {
     private MovieService service;
 
     @PostMapping()
-    public ResponseEntity<MovieResponseDTO> create(@RequestBody MovieRequestDTO request){
+    public ResponseEntity<MovieResponseDTO> create(@RequestBody MovieCreateRequestDTO request){
         return ResponseEntity.status(HttpStatus.CREATED).body(service.create(request));
     }
 

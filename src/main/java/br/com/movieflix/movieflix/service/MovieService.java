@@ -3,7 +3,7 @@ package br.com.movieflix.movieflix.service;
 import br.com.movieflix.movieflix.domain.Category;
 import br.com.movieflix.movieflix.domain.Movie;
 import br.com.movieflix.movieflix.domain.Streaming;
-import br.com.movieflix.movieflix.domain.dto.movie.MovieRequestDTO;
+import br.com.movieflix.movieflix.domain.dto.movie.MovieCreateRequestDTO;
 import br.com.movieflix.movieflix.domain.dto.movie.MovieResponseDTO;
 import br.com.movieflix.movieflix.domain.dto.movie.MovieUpdateRequestDTO;
 import br.com.movieflix.movieflix.domain.mapper.MovieMapper;
@@ -13,7 +13,6 @@ import br.com.movieflix.movieflix.repository.MovieRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
@@ -25,7 +24,7 @@ public class MovieService {
     private final StreamingService streamingService;
 
 
-    public MovieResponseDTO create(MovieRequestDTO request){
+    public MovieResponseDTO create(MovieCreateRequestDTO request){
 
         if (repository.existsByNameIgnoreCase(request.name())) {
             throw new BusinessException("Movie already exists");

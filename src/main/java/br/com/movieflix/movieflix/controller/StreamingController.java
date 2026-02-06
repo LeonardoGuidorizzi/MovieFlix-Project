@@ -1,6 +1,6 @@
 package br.com.movieflix.movieflix.controller;
 
-import br.com.movieflix.movieflix.domain.dto.streaming.StreamingRequestDTO;
+import br.com.movieflix.movieflix.domain.dto.streaming.StreamingCreateRequestDTO;
 import br.com.movieflix.movieflix.domain.dto.streaming.StreamingResponseDTO;
 import br.com.movieflix.movieflix.domain.dto.streaming.StreamingUpdateRequestDTO;
 import br.com.movieflix.movieflix.service.StreamingService;
@@ -19,7 +19,7 @@ public class StreamingController implements StreamingControllerDoc {
     private StreamingService service;
 
     @PostMapping
-    public ResponseEntity<StreamingResponseDTO> create(@RequestBody StreamingRequestDTO request){
+    public ResponseEntity<StreamingResponseDTO> create(@RequestBody StreamingCreateRequestDTO request){
         return ResponseEntity.status(HttpStatus.CREATED).body(service.create(request));
     }
 

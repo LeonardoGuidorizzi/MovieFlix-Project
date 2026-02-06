@@ -9,7 +9,7 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
-import br.com.movieflix.movieflix.domain.dto.movie.MovieRequestDTO;
+import br.com.movieflix.movieflix.domain.dto.movie.MovieCreateRequestDTO;
 import br.com.movieflix.movieflix.domain.dto.movie.MovieResponseDTO;
 import br.com.movieflix.movieflix.domain.dto.movie.MovieUpdateRequestDTO;
 
@@ -24,7 +24,7 @@ public interface MovieControllerDoc {
     })
     ResponseEntity<MovieResponseDTO> create(
             @RequestBody(description = "Movie data to be created", required = true)
-            MovieRequestDTO request
+            MovieCreateRequestDTO request
     );
 
     @Operation(summary = "Get all movies")

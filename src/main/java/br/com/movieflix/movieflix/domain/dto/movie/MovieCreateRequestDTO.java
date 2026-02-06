@@ -9,7 +9,7 @@ import jakarta.validation.constraints.PastOrPresent;
 import java.time.LocalDate;
 import java.util.List;
 
-public record MovieRequestDTO(
+public record MovieCreateRequestDTO(
         String name,
         String description,
 

@@ -1,7 +1,7 @@
 package br.com.movieflix.movieflix.controller;
 
 import br.com.movieflix.movieflix.domain.dto.category.CategoryResponseDTO;
-import br.com.movieflix.movieflix.domain.dto.category.CategoryRequestDTO;
+import br.com.movieflix.movieflix.domain.dto.category.CategoryCreateRequestDTO;
 import br.com.movieflix.movieflix.domain.dto.category.CategoryUpdateRequestDTO;
 import br.com.movieflix.movieflix.service.CategoryService;
 import br.com.movieflix.movieflix.swagger.Doc.CategoryControllerDoc;
@@ -19,7 +19,7 @@ public class CategoryController implements CategoryControllerDoc {
     private CategoryService service;
 
     @PostMapping
-    public ResponseEntity<CategoryResponseDTO> createCategory(@RequestBody CategoryRequestDTO request){
+    public ResponseEntity<CategoryResponseDTO> createCategory(@RequestBody CategoryCreateRequestDTO request){
         return ResponseEntity.status(HttpStatus.CREATED).body(service.create(request));
     }
 

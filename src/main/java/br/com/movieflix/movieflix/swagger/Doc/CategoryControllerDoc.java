@@ -1,6 +1,6 @@
 package br.com.movieflix.movieflix.swagger.Doc;
 
-import br.com.movieflix.movieflix.domain.dto.category.CategoryRequestDTO;
+import br.com.movieflix.movieflix.domain.dto.category.CategoryCreateRequestDTO;
 import br.com.movieflix.movieflix.domain.dto.category.CategoryResponseDTO;
 import br.com.movieflix.movieflix.domain.dto.category.CategoryUpdateRequestDTO;
 import io.swagger.v3.oas.annotations.Operation;
@@ -26,7 +26,7 @@ public interface CategoryControllerDoc {
     })
     ResponseEntity<CategoryResponseDTO> createCategory(
             @RequestBody(description = "Category data to be created", required = true)
-            CategoryRequestDTO request
+            CategoryCreateRequestDTO request
     );
 
     @Operation(summary = "Get all categories")

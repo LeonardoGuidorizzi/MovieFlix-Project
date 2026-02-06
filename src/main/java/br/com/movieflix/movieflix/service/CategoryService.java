@@ -2,7 +2,7 @@ package br.com.movieflix.movieflix.service;
 
 import br.com.movieflix.movieflix.domain.Category;
 import br.com.movieflix.movieflix.domain.dto.category.CategoryResponseDTO;
-import br.com.movieflix.movieflix.domain.dto.category.CategoryRequestDTO;
+import br.com.movieflix.movieflix.domain.dto.category.CategoryCreateRequestDTO;
 import br.com.movieflix.movieflix.domain.dto.category.CategoryUpdateRequestDTO;
 import br.com.movieflix.movieflix.domain.mapper.CategoryMapper;
 import br.com.movieflix.movieflix.exception.business.BusinessException;
@@ -18,7 +18,7 @@ import java.util.List;
 public class CategoryService {
     private final CategoryRepository repository;
 
-    public CategoryResponseDTO create(CategoryRequestDTO request){
+    public CategoryResponseDTO create(CategoryCreateRequestDTO request){
         if (repository.existsByNameIgnoreCase(request.name())) {
             throw new BusinessException("Category already exists");
         }
