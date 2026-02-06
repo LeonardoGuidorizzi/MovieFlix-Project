@@ -5,10 +5,10 @@ import lombok.Builder;
 
 @Builder
 public record RegisterRequestDTO(
-        @NotBlank(message = "Your name is required.")
+        @NotBlank(message = "Name is required.")
         String name,
-        @NotBlank(message = "Your email address is required.")
+        @NotBlank(message = "Email address is required.")
         String email,
-        @NotBlank(message = "Your password is required.")
+        @NotBlank(message = "Password is required.")
         String password) {
 }
