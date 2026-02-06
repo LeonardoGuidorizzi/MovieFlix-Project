@@ -33,7 +33,7 @@ public record MovieCreateRequestDTO(
         List<Long> categories,
 
         @NotNull(message = "Streamings are required to create.")
-        @Size(min = 1, message = "At least one streaming is required to create.")
+        @NotEmpty(message = "At least one streaming is required to create.")
         List<Long> streamings
 ) {}
 

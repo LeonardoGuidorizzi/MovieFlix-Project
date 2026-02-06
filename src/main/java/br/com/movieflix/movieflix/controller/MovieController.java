@@ -5,6 +5,7 @@ import br.com.movieflix.movieflix.domain.dto.movie.MovieResponseDTO;
 import br.com.movieflix.movieflix.domain.dto.movie.MovieUpdateRequestDTO;
 import br.com.movieflix.movieflix.service.MovieService;
 import br.com.movieflix.movieflix.swagger.Doc.MovieControllerDoc;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -20,7 +21,7 @@ public class MovieController implements MovieControllerDoc {
     private MovieService service;
 
     @PostMapping()
-    public ResponseEntity<MovieResponseDTO> create(@RequestBody MovieCreateRequestDTO request){
+    public ResponseEntity<MovieResponseDTO> create(@Valid @RequestBody MovieCreateRequestDTO request){
         return ResponseEntity.status(HttpStatus.CREATED).body(service.create(request));
     }
 
@@ -45,7 +46,7 @@ public class MovieController implements MovieControllerDoc {
     @PutMapping("/{id}")
     public ResponseEntity<MovieResponseDTO> update(
             @PathVariable Long id,
-            @RequestBody MovieUpdateRequestDTO request) {
+            @Valid @RequestBody MovieUpdateRequestDTO request) {
 
         return ResponseEntity.ok(service.update(id, request));
     }

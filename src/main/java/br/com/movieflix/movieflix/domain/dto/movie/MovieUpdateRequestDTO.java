@@ -27,10 +27,10 @@ public record MovieUpdateRequestDTO(
         @Positive(message = "Rating must be greater than zero to update.")
         Double rating,
 
-        @Size(min = 1, message = "Categories list must contain at least one category to update.")
+        @NotEmpty(message = "At least one category is required to update.")
         List<Long> categories,
 
-        @Size(min = 1, message = "Streamings list must contain at least one streaming to update.")
+        @NotEmpty(message = "At least one streaming is required to update.")
         List<Long> streamings
 ) {}
 

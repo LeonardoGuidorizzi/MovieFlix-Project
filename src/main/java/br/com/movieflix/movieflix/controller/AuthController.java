@@ -7,6 +7,7 @@ import br.com.movieflix.movieflix.domain.dto.Auth.RegisterRequestDTO;
 import br.com.movieflix.movieflix.security.auth.AuthService;
 import br.com.movieflix.movieflix.service.UserService;
 import br.com.movieflix.movieflix.swagger.Doc.AuthControllerDoc;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -25,12 +26,12 @@ public class AuthController implements AuthControllerDoc {
     private final AuthService authService;
 
     @PostMapping("/register")
-    public ResponseEntity<RegisterReponseDTO> register(@RequestBody RegisterRequestDTO request){
+    public ResponseEntity<RegisterReponseDTO> register(@Valid @RequestBody RegisterRequestDTO request){
         return ResponseEntity.status(HttpStatus.CREATED).body(userService.create(request));
     }
 
     @PostMapping("/login")
-    public ResponseEntity<LoginResponseDTO> login(@RequestBody LoginRequestDTO request){
+    public ResponseEntity<LoginResponseDTO> login(@Valid @RequestBody LoginRequestDTO request){
         return ResponseEntity.ok(authService.login(request));
     }
 

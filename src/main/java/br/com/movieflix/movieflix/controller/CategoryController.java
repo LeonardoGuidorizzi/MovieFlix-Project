@@ -5,6 +5,7 @@ import br.com.movieflix.movieflix.domain.dto.category.CategoryCreateRequestDTO;
 import br.com.movieflix.movieflix.domain.dto.category.CategoryUpdateRequestDTO;
 import br.com.movieflix.movieflix.service.CategoryService;
 import br.com.movieflix.movieflix.swagger.Doc.CategoryControllerDoc;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -19,7 +20,7 @@ public class CategoryController implements CategoryControllerDoc {
     private CategoryService service;
 
     @PostMapping
-    public ResponseEntity<CategoryResponseDTO> createCategory(@RequestBody CategoryCreateRequestDTO request){
+    public ResponseEntity<CategoryResponseDTO> createCategory(@Valid @RequestBody CategoryCreateRequestDTO request){
         return ResponseEntity.status(HttpStatus.CREATED).body(service.create(request));
     }
 
@@ -39,7 +40,7 @@ public class CategoryController implements CategoryControllerDoc {
     Eles retornam um builder (um “montador” de resposta).
     * */
     @PutMapping("/{id}")
-    public ResponseEntity<CategoryResponseDTO> update (@PathVariable Long id, @RequestBody CategoryUpdateRequestDTO request){
+    public ResponseEntity<CategoryResponseDTO> update (@PathVariable Long id, @Valid @RequestBody CategoryUpdateRequestDTO request){
         return ResponseEntity.ok(service.update(id, request));
     }
     @DeleteMapping("/{id}")
