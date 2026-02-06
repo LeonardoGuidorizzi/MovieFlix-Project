@@ -76,25 +76,29 @@ public class MovieService {
 
         MovieMapper.update(request, foundMovie, categories, streamings);
 
-        foundMovie.setUpdatedAt(LocalDateTime.now());
-
         return MovieMapper.toDto(repository.save(foundMovie));
 
     }
 
     public List<MovieResponseDTO> findMovieByCategoryId(Long categoryId){
-        if(!repository.existsById(categoryId)){
-            throw new ResourceNotFoundException("Movie", categoryId);
+        List<Movie> moviesByCategoryId = repository.findMovieByCategories_Id(categoryId);
+
+        if (moviesByCategoryId.isEmpty()) {
+            throw new ResourceNotFoundException("Category", categoryId);
         }
-        List<Movie> moviesByCategoryIds = repository.findMovieByCategories_Id(categoryId);
-        return moviesByCategoryIds.stream().map(MovieMapper::toDto).toList();
+
+        return moviesByCategoryId.stream()
+                .map(MovieMapper::toDto)
+                .toList();
     }
 
+
     public List<MovieResponseDTO> findMovieByStreamingId(Long streamingId){
-        if(!repository.existsById(streamingId)){
+        List<Movie> moviesByStreamingId = repository.findMovieByStreamings_Id(streamingId);
+        if(moviesByStreamingId.isEmpty()){
             throw new ResourceNotFoundException("Streaming", streamingId);
         }
-        List<Movie> moviesByStreamingId = repository.findMovieByStreamings_Id(streamingId);
+
         return moviesByStreamingId.stream().map(MovieMapper::toDto).toList();
     }
 
