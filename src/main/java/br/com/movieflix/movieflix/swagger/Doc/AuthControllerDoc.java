@@ -6,10 +6,10 @@ import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import io.swagger.v3.oas.annotations.parameters.RequestBody;
 import org.springframework.http.ResponseEntity;
-import br.com.movieflix.movieflix.domain.dto.Auth.LoginRequestDTO;
-import br.com.movieflix.movieflix.domain.dto.Auth.LoginResponseDTO;
-import br.com.movieflix.movieflix.domain.dto.Auth.RegisterReponseDTO;
-import br.com.movieflix.movieflix.domain.dto.Auth.RegisterRequestDTO;
+import br.com.movieflix.movieflix.dto.Auth.LoginRequestDTO;
+import br.com.movieflix.movieflix.dto.Auth.LoginResponseDTO;
+import br.com.movieflix.movieflix.dto.Auth.RegisterReponseDTO;
+import br.com.movieflix.movieflix.dto.Auth.RegisterRequestDTO;
 
 @Tag(name = "Authentication", description = "Authentication and user registration endpoints")
 public interface AuthControllerDoc {

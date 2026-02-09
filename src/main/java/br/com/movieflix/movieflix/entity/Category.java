@@ -1,4 +1,4 @@
-package br.com.movieflix.movieflix.domain;
+package br.com.movieflix.movieflix.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
@@ -6,14 +6,15 @@ import lombok.*;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@Getter
 @Setter
+@Getter
 @Entity
-@Table(name = "tb_streaming")
-public class Streaming {
+@Table(name = "tb_category")
+public class Category {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @Column(length = 100, nullable = false)
     private String name;
+
 }

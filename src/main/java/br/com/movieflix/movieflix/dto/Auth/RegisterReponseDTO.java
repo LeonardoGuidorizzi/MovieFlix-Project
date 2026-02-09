@@ -1,4 +1,4 @@
-package br.com.movieflix.movieflix.domain.dto.Auth;
+package br.com.movieflix.movieflix.dto.Auth;
 
 import lombok.Builder;
 

@@ -1,10 +1,10 @@
 package br.com.movieflix.movieflix.service;
 
-import br.com.movieflix.movieflix.domain.Category;
-import br.com.movieflix.movieflix.domain.dto.category.CategoryResponseDTO;
-import br.com.movieflix.movieflix.domain.dto.category.CategoryCreateRequestDTO;
-import br.com.movieflix.movieflix.domain.dto.category.CategoryUpdateRequestDTO;
-import br.com.movieflix.movieflix.domain.mapper.CategoryMapper;
+import br.com.movieflix.movieflix.entity.Category;
+import br.com.movieflix.movieflix.dto.category.CategoryResponseDTO;
+import br.com.movieflix.movieflix.dto.category.CategoryCreateRequestDTO;
+import br.com.movieflix.movieflix.dto.category.CategoryUpdateRequestDTO;
+import br.com.movieflix.movieflix.mapper.CategoryMapper;
 import br.com.movieflix.movieflix.exception.business.BusinessException;
 import br.com.movieflix.movieflix.exception.notFound.ResourceNotFoundException;
 import br.com.movieflix.movieflix.repository.CategoryRepository;

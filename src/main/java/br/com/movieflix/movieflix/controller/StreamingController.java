@@ -1,8 +1,8 @@
 package br.com.movieflix.movieflix.controller;
 
-import br.com.movieflix.movieflix.domain.dto.streaming.StreamingCreateRequestDTO;
-import br.com.movieflix.movieflix.domain.dto.streaming.StreamingResponseDTO;
-import br.com.movieflix.movieflix.domain.dto.streaming.StreamingUpdateRequestDTO;
+import br.com.movieflix.movieflix.dto.streaming.StreamingCreateRequestDTO;
+import br.com.movieflix.movieflix.dto.streaming.StreamingResponseDTO;
+import br.com.movieflix.movieflix.dto.streaming.StreamingUpdateRequestDTO;
 import br.com.movieflix.movieflix.service.StreamingService;
 import br.com.movieflix.movieflix.swagger.Doc.StreamingControllerDoc;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,4 +1,4 @@
-package br.com.movieflix.movieflix.domain.dto.streaming;
+package br.com.movieflix.movieflix.dto.streaming;
 
 import jakarta.validation.constraints.NotBlank;
 

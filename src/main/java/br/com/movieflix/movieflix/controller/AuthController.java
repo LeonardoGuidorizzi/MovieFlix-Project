@@ -1,9 +1,9 @@
 package br.com.movieflix.movieflix.controller;
 
-import br.com.movieflix.movieflix.domain.dto.Auth.LoginRequestDTO;
-import br.com.movieflix.movieflix.domain.dto.Auth.LoginResponseDTO;
-import br.com.movieflix.movieflix.domain.dto.Auth.RegisterReponseDTO;
-import br.com.movieflix.movieflix.domain.dto.Auth.RegisterRequestDTO;
+import br.com.movieflix.movieflix.dto.Auth.LoginRequestDTO;
+import br.com.movieflix.movieflix.dto.Auth.LoginResponseDTO;
+import br.com.movieflix.movieflix.dto.Auth.RegisterReponseDTO;
+import br.com.movieflix.movieflix.dto.Auth.RegisterRequestDTO;
 import br.com.movieflix.movieflix.security.auth.AuthService;
 import br.com.movieflix.movieflix.service.UserService;
 import br.com.movieflix.movieflix.swagger.Doc.AuthControllerDoc;

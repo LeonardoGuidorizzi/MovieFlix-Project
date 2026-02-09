@@ -1,7 +1,7 @@
-package br.com.movieflix.movieflix.domain.dto.movie;
+package br.com.movieflix.movieflix.dto.movie;
 
-import br.com.movieflix.movieflix.domain.dto.category.CategoryResponseDTO;
-import br.com.movieflix.movieflix.domain.dto.streaming.StreamingResponseDTO;
+import br.com.movieflix.movieflix.dto.category.CategoryResponseDTO;
+import br.com.movieflix.movieflix.dto.streaming.StreamingResponseDTO;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Builder;

@@ -1,8 +1,8 @@
-package br.com.movieflix.movieflix.domain.mapper;
+package br.com.movieflix.movieflix.mapper;
 
-import br.com.movieflix.movieflix.domain.User;
-import br.com.movieflix.movieflix.domain.dto.Auth.RegisterReponseDTO;
-import br.com.movieflix.movieflix.domain.dto.Auth.RegisterRequestDTO;
+import br.com.movieflix.movieflix.entity.User;
+import br.com.movieflix.movieflix.dto.Auth.RegisterReponseDTO;
+import br.com.movieflix.movieflix.dto.Auth.RegisterRequestDTO;
 import lombok.experimental.UtilityClass;
 
 @UtilityClass

@@ -1,8 +1,8 @@
 package br.com.movieflix.movieflix.controller;
 
-import br.com.movieflix.movieflix.domain.dto.category.CategoryResponseDTO;
-import br.com.movieflix.movieflix.domain.dto.category.CategoryCreateRequestDTO;
-import br.com.movieflix.movieflix.domain.dto.category.CategoryUpdateRequestDTO;
+import br.com.movieflix.movieflix.dto.category.CategoryResponseDTO;
+import br.com.movieflix.movieflix.dto.category.CategoryCreateRequestDTO;
+import br.com.movieflix.movieflix.dto.category.CategoryUpdateRequestDTO;
 import br.com.movieflix.movieflix.service.CategoryService;
 import br.com.movieflix.movieflix.swagger.Doc.CategoryControllerDoc;
 import jakarta.validation.Valid;

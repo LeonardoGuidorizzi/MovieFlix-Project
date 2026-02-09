@@ -1,6 +1,6 @@
 package br.com.movieflix.movieflix.repository;
 
-import br.com.movieflix.movieflix.domain.Movie;
+import br.com.movieflix.movieflix.entity.Movie;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;

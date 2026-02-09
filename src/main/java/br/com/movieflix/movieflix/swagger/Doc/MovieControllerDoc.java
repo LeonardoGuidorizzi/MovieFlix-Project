@@ -9,9 +9,9 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
-import br.com.movieflix.movieflix.domain.dto.movie.MovieCreateRequestDTO;
-import br.com.movieflix.movieflix.domain.dto.movie.MovieResponseDTO;
-import br.com.movieflix.movieflix.domain.dto.movie.MovieUpdateRequestDTO;
+import br.com.movieflix.movieflix.dto.movie.MovieCreateRequestDTO;
+import br.com.movieflix.movieflix.dto.movie.MovieResponseDTO;
+import br.com.movieflix.movieflix.dto.movie.MovieUpdateRequestDTO;
 
 import java.util.List;
 

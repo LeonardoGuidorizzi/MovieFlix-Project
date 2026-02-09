@@ -8,9 +8,9 @@ import io.swagger.v3.oas.annotations.parameters.RequestBody;
 import io.swagger.v3.oas.annotations.Parameter;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
-import br.com.movieflix.movieflix.domain.dto.streaming.StreamingCreateRequestDTO;
-import br.com.movieflix.movieflix.domain.dto.streaming.StreamingResponseDTO;
-import br.com.movieflix.movieflix.domain.dto.streaming.StreamingUpdateRequestDTO;
+import br.com.movieflix.movieflix.dto.streaming.StreamingCreateRequestDTO;
+import br.com.movieflix.movieflix.dto.streaming.StreamingResponseDTO;
+import br.com.movieflix.movieflix.dto.streaming.StreamingUpdateRequestDTO;
 
 
 import java.util.List;

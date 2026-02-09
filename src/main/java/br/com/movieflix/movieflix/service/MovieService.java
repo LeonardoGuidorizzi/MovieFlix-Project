@@ -1,12 +1,12 @@
 package br.com.movieflix.movieflix.service;
 
-import br.com.movieflix.movieflix.domain.Category;
-import br.com.movieflix.movieflix.domain.Movie;
-import br.com.movieflix.movieflix.domain.Streaming;
-import br.com.movieflix.movieflix.domain.dto.movie.MovieCreateRequestDTO;
-import br.com.movieflix.movieflix.domain.dto.movie.MovieResponseDTO;
-import br.com.movieflix.movieflix.domain.dto.movie.MovieUpdateRequestDTO;
-import br.com.movieflix.movieflix.domain.mapper.MovieMapper;
+import br.com.movieflix.movieflix.entity.Category;
+import br.com.movieflix.movieflix.entity.Movie;
+import br.com.movieflix.movieflix.entity.Streaming;
+import br.com.movieflix.movieflix.dto.movie.MovieCreateRequestDTO;
+import br.com.movieflix.movieflix.dto.movie.MovieResponseDTO;
+import br.com.movieflix.movieflix.dto.movie.MovieUpdateRequestDTO;
+import br.com.movieflix.movieflix.mapper.MovieMapper;
 import br.com.movieflix.movieflix.exception.business.BusinessException;
 import br.com.movieflix.movieflix.exception.notFound.ResourceNotFoundException;
 import br.com.movieflix.movieflix.repository.MovieRepository;

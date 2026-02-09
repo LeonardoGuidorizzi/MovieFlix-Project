@@ -1,12 +1,8 @@
-package br.com.movieflix.movieflix.domain.dto.Auth;
+package br.com.movieflix.movieflix.dto.Auth;
 
 import jakarta.validation.constraints.NotBlank;
-import lombok.Builder;
 
-@Builder
-public record RegisterRequestDTO(
-        @NotBlank(message = "Name is required.")
-        String name,
+public record LoginRequestDTO(
         @NotBlank(message = "Email address is required.")
         String email,
         @NotBlank(message = "Password is required.")

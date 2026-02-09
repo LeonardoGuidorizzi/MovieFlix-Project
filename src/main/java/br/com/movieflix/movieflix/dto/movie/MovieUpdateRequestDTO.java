@@ -1,4 +1,4 @@
-package br.com.movieflix.movieflix.domain.dto.movie;
+package br.com.movieflix.movieflix.dto.movie;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import io.swagger.v3.oas.annotations.media.Schema;

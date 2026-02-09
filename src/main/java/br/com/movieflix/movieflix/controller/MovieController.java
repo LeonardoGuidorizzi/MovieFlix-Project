@@ -1,8 +1,8 @@
 package br.com.movieflix.movieflix.controller;
 
-import br.com.movieflix.movieflix.domain.dto.movie.MovieCreateRequestDTO;
-import br.com.movieflix.movieflix.domain.dto.movie.MovieResponseDTO;
-import br.com.movieflix.movieflix.domain.dto.movie.MovieUpdateRequestDTO;
+import br.com.movieflix.movieflix.dto.movie.MovieCreateRequestDTO;
+import br.com.movieflix.movieflix.dto.movie.MovieResponseDTO;
+import br.com.movieflix.movieflix.dto.movie.MovieUpdateRequestDTO;
 import br.com.movieflix.movieflix.service.MovieService;
 import br.com.movieflix.movieflix.swagger.Doc.MovieControllerDoc;
 import jakarta.validation.Valid;
